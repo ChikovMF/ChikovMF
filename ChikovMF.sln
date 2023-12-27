@@ -3,9 +3,53 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{31E2BD6E-98C6-424D-BC8C-ACF81DC98970}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{2BD1C79A-1F8E-4B25-AC7F-D977DFF691D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{6E7E8F81-9BF2-45A2-985B-3E5ED5A8AE76}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9A25122A-EF07-4253-A237-6F3D91D0BA3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Domain", "ChikovMF.Domain\ChikovMF.Domain.csproj", "{E5AF75D5-8AE0-48CB-B962-7DD9CAA4A88B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Application", "ChikovMF.Application\ChikovMF.Application.csproj", "{85FCE35A-7EFD-43AB-96C5-CEA04464F42E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Persistence", "ChikovMF.Persistence\ChikovMF.Persistence.csproj", "{09FEEE28-EB84-4686-A438-1B2B725B65BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.MVC", "ChikovMF.MVC\ChikovMF.MVC.csproj", "{C469DEE4-0241-4AAA-AB25-629C05BF377B}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5AF75D5-8AE0-48CB-B962-7DD9CAA4A88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5AF75D5-8AE0-48CB-B962-7DD9CAA4A88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5AF75D5-8AE0-48CB-B962-7DD9CAA4A88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5AF75D5-8AE0-48CB-B962-7DD9CAA4A88B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85FCE35A-7EFD-43AB-96C5-CEA04464F42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85FCE35A-7EFD-43AB-96C5-CEA04464F42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85FCE35A-7EFD-43AB-96C5-CEA04464F42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85FCE35A-7EFD-43AB-96C5-CEA04464F42E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09FEEE28-EB84-4686-A438-1B2B725B65BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09FEEE28-EB84-4686-A438-1B2B725B65BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09FEEE28-EB84-4686-A438-1B2B725B65BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09FEEE28-EB84-4686-A438-1B2B725B65BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C469DEE4-0241-4AAA-AB25-629C05BF377B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C469DEE4-0241-4AAA-AB25-629C05BF377B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C469DEE4-0241-4AAA-AB25-629C05BF377B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C469DEE4-0241-4AAA-AB25-629C05BF377B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E5AF75D5-8AE0-48CB-B962-7DD9CAA4A88B} = {31E2BD6E-98C6-424D-BC8C-ACF81DC98970}
+		{85FCE35A-7EFD-43AB-96C5-CEA04464F42E} = {31E2BD6E-98C6-424D-BC8C-ACF81DC98970}
+		{09FEEE28-EB84-4686-A438-1B2B725B65BC} = {2BD1C79A-1F8E-4B25-AC7F-D977DFF691D9}
+		{C469DEE4-0241-4AAA-AB25-629C05BF377B} = {6E7E8F81-9BF2-45A2-985B-3E5ED5A8AE76}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1C05665-520C-484D-8044-FDAA7C2E5E50}
