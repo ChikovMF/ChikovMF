@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ChikovMF.Application\ChikovMF.Application.csproj" />
+    <ProjectReference Include="..\ChikovMF.Persistence\ChikovMF.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
