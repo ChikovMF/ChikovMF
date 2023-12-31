@@ -1,15 +1,33 @@
+using ChikovMF.Application;
+using ChikovMF.Application.Common.Mappings;
+using ChikovMF.Application.Interfaces;
+using ChikovMF.Persistence;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Подключение и конфигурация AutoMapper.
+builder.Services.AddAutoMapper(config =>
+{
+    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+    config.AddProfile(new AssemblyMappingProfile(typeof(IChikovMFDbContext).Assembly));
+});
+
+// Подключение слоя "Persistence".
+string stringConnection = builder.Configuration.GetConnectionString("DbConnection") ??
+    throw new NullReferenceException("The database connection string was not found.");
+builder.Services.AddPersistence(stringConnection);
+
+// Подключение слоя "Application".
+builder.Services.AddApplication();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

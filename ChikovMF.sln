@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9A25122A-EF07-4253-A237-6F3D91D0BA3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Domain", "ChikovMF.Domain\ChikovMF.Domain.csproj", "{E5AF75D5-8AE0-48CB-B962-7DD9CAA4A88B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChikovMF.Domain", "ChikovMF.Domain\ChikovMF.Domain.csproj", "{E5AF75D5-8AE0-48CB-B962-7DD9CAA4A88B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Application", "ChikovMF.Application\ChikovMF.Application.csproj", "{85FCE35A-7EFD-43AB-96C5-CEA04464F42E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChikovMF.Application", "ChikovMF.Application\ChikovMF.Application.csproj", "{85FCE35A-7EFD-43AB-96C5-CEA04464F42E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Persistence", "ChikovMF.Persistence\ChikovMF.Persistence.csproj", "{09FEEE28-EB84-4686-A438-1B2B725B65BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChikovMF.Persistence", "ChikovMF.Persistence\ChikovMF.Persistence.csproj", "{09FEEE28-EB84-4686-A438-1B2B725B65BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.MVC", "ChikovMF.MVC\ChikovMF.MVC.csproj", "{C469DEE4-0241-4AAA-AB25-629C05BF377B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChikovMF.MVC", "ChikovMF.MVC\ChikovMF.MVC.csproj", "{C469DEE4-0241-4AAA-AB25-629C05BF377B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

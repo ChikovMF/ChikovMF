@@ -1,4 +1,6 @@
-﻿using ChikovMF.Application.Common.Mappings;
+﻿using AutoMapper;
+using ChikovMF.Application.ChikovMF.Queries.GetProjectDetails;
+using ChikovMF.Application.Common.Mappings;
 using ChikovMF.Domain;
 using System;
 using System.Collections.Generic;
@@ -12,5 +14,11 @@ namespace ChikovMF.Application.ChikovMF.Queries.GetProjectList
     {
         public int ProjectId { get; set; }
         public string Title { get; set; } = null!;
+        public string Description { get; set; } = null!;
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<Project, ProjectLookupDto>();
+        }
     }
 }

@@ -20,7 +20,7 @@ public class AssemblyMappingProfile : Profile
         {
             var instance = Activator.CreateInstance(type);
             var metodInfo = type.GetMethod("Mapping");
-            MethodInfo?.Invoke(instance, new object[] { this });
+            metodInfo?.Invoke(instance, new object[] { this });
         }
     }
 }

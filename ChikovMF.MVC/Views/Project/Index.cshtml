@@ -1,0 +1,52 @@
+﻿@using ChikovMF.Application.ChikovMF.Queries.GetProjectList
+@model ProjectListViewModel;
+@{
+
+}
+
+@if (Model.Projects is null || Model.Projects.Count == 0)
+{
+    <p>Список проектов пуст.</p>
+}
+else
+{
+    <section id="gallery">
+        <div class="container">
+            <div class="row">
+                @foreach (var project in Model.Projects)
+                {
+
+                    <div class="col-lg-4 mb-4">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">@project.Title</h5>
+                                <p class="card-text">@project.Description</p>
+                                <a href="" class="btn btn-outline-success btn-sm">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </section>
+
+    @* <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4">
+
+        @foreach (var project in Model.Projects)
+        {
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@project.Title</h5>
+                        <p class="card-text">@project.Description</p>
+                        <a asp-controller="Project" asp-action="Index" class="btn btn-primary">Открыть</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div> *@
+}

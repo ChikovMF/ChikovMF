@@ -10,7 +10,10 @@ public class ChikovMFDbContext : DbContext, IChikovMFDbContext
     public DbSet<Project> Projects { get; set; }
 
     public ChikovMFDbContext(DbContextOptions<ChikovMFDbContext> options)
-        : base(options) { }
+        : base(options)
+    {
+        Database.EnsureCreated();
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
