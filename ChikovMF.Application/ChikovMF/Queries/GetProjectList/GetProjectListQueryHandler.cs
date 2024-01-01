@@ -21,6 +21,7 @@ public class GetProjectListQueryHandler
     public async Task<ProjectListViewModel> Handle(GetProjectListQuery request, CancellationToken cancellationToken)
     {
         var projects = await _context.Projects.AsNoTracking()
+            .Include(p => p.Tags)
             .ProjectTo<ProjectLookupDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
 

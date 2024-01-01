@@ -24,6 +24,7 @@ public class GetProjectDetailsQueryHandler
         CancellationToken cancellationToken)
     {
         var project = await _context.Projects.AsNoTracking()
+            .Include(p => p.Tags)
             .FirstOrDefaultAsync(project => project.ProjectId == request.ProjectId,
                 cancellationToken);
 

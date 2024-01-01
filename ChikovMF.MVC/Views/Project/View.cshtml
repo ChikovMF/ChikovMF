@@ -1,5 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using ChikovMF.Application.ChikovMF.Queries.GetProjectDetails
+
+@model ProjectDetailsViewModel
 @{
+
+}
+
+<p>@Model.Title</p>
+
+<p>@Model.Description</p>
+
+@if (Model.Tags != null && Model.Tags.Count != 0)
+{
+    <ul class="">Тэги проекта</ul>
+    @foreach (var tag in Model.Tags)
+    {
+        <li>@tag.Title</li>
+    }
 }

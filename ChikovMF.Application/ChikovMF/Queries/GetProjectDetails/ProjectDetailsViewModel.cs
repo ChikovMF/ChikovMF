@@ -14,11 +14,7 @@ namespace ChikovMF.Application.ChikovMF.Queries.GetProjectDetails
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Project, ProjectDetailsViewModel>()
-                .ForMember(projectVM => projectVM.Title,
-                    opt => opt.MapFrom(project => project.Title))
-                .ForMember(projectVM => projectVM.Description,
-                    opt => opt.MapFrom(project => project.Description));
+            profile.CreateMap<Project, ProjectDetailsViewModel>();
         }
     }
 }

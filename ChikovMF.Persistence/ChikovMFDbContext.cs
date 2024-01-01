@@ -12,6 +12,7 @@ public class ChikovMFDbContext : DbContext, IChikovMFDbContext
     public ChikovMFDbContext(DbContextOptions<ChikovMFDbContext> options)
         : base(options)
     {
+        // Database.EnsureDeleted();
         Database.EnsureCreated();
     }
 
