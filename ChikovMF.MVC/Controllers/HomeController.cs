@@ -31,7 +31,7 @@ namespace ChikovMF.MVC.Controllers
 
             emailSender.SendEmailAsync(message);
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
