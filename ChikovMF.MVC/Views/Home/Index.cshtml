@@ -1,8 +1,88 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная страница";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 d-sm-block d-none">
+            <img src="/img/home/me.png" class="img-fluid border" alt="Мое фото">
+        </div>
+        <div class="col-sm-9">
+            <h1>Здравствуйте, я Матвей</h1>
+            <p>Я начинающий разработчик. Мне нравится создавать различные приложения. Этот сайт - мое веб-портфолио. На нем содержится основная информация обо мне как о разработчике, а также некоторые проекты которые я создал.</p>
+        </div>
+    </div>
+</div>
+
+@* Блок ключевых кавыков *@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Ключевые навыки</h2>
+            <ul class="list-group list-group-horizontal-sm">
+                <li class="list-group-item">C#</li>
+                <li class="list-group-item">ASP.NET</li>
+                <li class="list-group-item">Entity Framework</li>
+                <li class="list-group-item">xUnit</li>
+                <li class="list-group-item">JavaScript</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@* Блок контакты *@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Мои контакты</h2>
+            <ul>
+                <li>
+                    Email: 
+                    <a href="mailto:ia-matvey@mail.ru">ia-matvey@mail.ru</a>
+                </li>
+                <li>
+                    Telegram: 
+                    <a href="tg://resolve?domain=ChikovMF">@@ChikovMF</a>
+                </li>
+                <li>
+                    @* Кнопка вызова модального окна *@
+                    Отправить сообщение с сайта: 
+                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Написать мне
+                    </button>
+
+                    @* Модальное окно *@
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Заголовок модального окна</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" id="send_message">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Ваше имя</label>
+                                            <input type="text" class="form-control" id="name" placeholder="Введите имя">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Ваши контакты</label>
+                                            <input type="email" class="form-control" id="email" placeholder="Как с вами связаться">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message" class="form-label">Ваше сообщение</label>
+                                            <textarea class="form-control" id="message" rows="3" placeholder="Введите сообщение"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    @* <button type="submit" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Закрыть</button> *@
+                                    <button type="submit" form="send_message" class="btn btn-sm btn-outline-primary">Отправить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+        </div>
+    </div>
 </div>

@@ -358,4 +358,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-/ChikovMF.MVC/wwwroot/project_content
+
+# My ignore file
+/ChikovMF.MVC/wwwroot/img/project/*

@@ -16,4 +16,8 @@
     <ProjectReference Include="..\ChikovMF.Persistence\ChikovMF.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\home\" />
+  </ItemGroup>
+
 </Project>
