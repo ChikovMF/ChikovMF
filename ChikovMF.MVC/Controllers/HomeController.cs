@@ -1,4 +1,6 @@
+using ChikovMF.MVC.FormModels.Home;
 using ChikovMF.MVC.Models;
+using ChikovMF.WebApi.Services.EmailService;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -16,6 +18,20 @@ namespace ChikovMF.MVC.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult SendingMessage([FromServices] IEmailSender emailSender, [FromForm] MessageMeFormModel form)
+        {
+            string content = @$"От кого: {form.Name} <br/>Сообщение: {form.Message} <br/>Контакты: {form.Contacts}";
+
+            string[] emails = { "ia-matvey@mail.ru" };
+
+            var message = new Message(emails, "Сообщение с сайта ChikovMF.", content);
+
+            emailSender.SendEmailAsync(message);
+
+            return View("Index");
         }
 
         public IActionResult Privacy()

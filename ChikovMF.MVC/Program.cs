@@ -2,9 +2,12 @@ using ChikovMF.Application;
 using ChikovMF.Application.Common.Mappings;
 using ChikovMF.Application.Interfaces;
 using ChikovMF.Persistence;
+using ChikovMF.WebApi.Services.EmailService;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var configuration = builder.Configuration;
 
 // Подключение и конфигурация AutoMapper.
 builder.Services.AddAutoMapper(config =>
@@ -19,7 +22,7 @@ string stringConnection = builder.Configuration.GetConnectionString("DbConnectio
 builder.Services.AddPersistence(stringConnection);
 
 // Подключение слоя "Application".
-builder.Services.AddApplication();
+builder.Services.AddApplication(configuration);
 
 builder.Services.AddControllersWithViews();
 

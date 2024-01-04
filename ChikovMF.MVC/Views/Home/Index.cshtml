@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ChikovMF.MVC.FormModels.Home.MessageMeFormModel
+@{
     ViewData["Title"] = "Главная страница";
 }
 
@@ -60,18 +61,18 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="post" id="send_message">
+                                    <form asp-controller="Home" asp-action="SendingMessage" method="post" id="send_message">
                                         <div class="mb-3">
-                                            <label for="name" class="form-label">Ваше имя</label>
-                                            <input type="text" class="form-control" id="name" placeholder="Введите имя">
+                                            <label asp-for="Name" class="form-label"></label>
+                                            <input asp-for="Name" class="form-control" placeholder="Введите имя">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Ваши контакты</label>
-                                            <input type="email" class="form-control" id="email" placeholder="Как с вами связаться">
+                                            <label asp-for="Contacts" class="form-label"></label>
+                                            <input asp-for="Contacts" class="form-control" placeholder="Как с вами связаться">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="message" class="form-label">Ваше сообщение</label>
-                                            <textarea class="form-control" id="message" rows="3" placeholder="Введите сообщение"></textarea>
+                                            <label asp-for="Message" class="form-label"></label>
+                                            <textarea asp-for="Message" class="form-control" placeholder="Введите сообщение"></textarea>
                                         </div>
                                     </form>
                                 </div>
