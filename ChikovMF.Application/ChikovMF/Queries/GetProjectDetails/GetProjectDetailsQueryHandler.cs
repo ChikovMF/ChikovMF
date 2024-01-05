@@ -25,7 +25,7 @@ public class GetProjectDetailsQueryHandler
     {
         var project = await _context.Projects.AsNoTracking()
             .Include(p => p.Tags)
-            .Include(p => p.Images)
+            .Include(p => p.ImageLinks)
             .FirstOrDefaultAsync(project => project.ProjectId == request.ProjectId,
                 cancellationToken);
 

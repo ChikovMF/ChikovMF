@@ -12,6 +12,7 @@ namespace ChikovMF.Application.ChikovMF.Queries.GetProjectDetails
 
         public ICollection<Tag>? Tags { get; set; }
         public ICollection<ImageLink>? Images { get; set; }
+        public ICollection<ProjectLink>? ProjectLinks { get; set; }
 
         public void Mapping(Profile profile)
         {

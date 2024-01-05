@@ -14,7 +14,7 @@ public class UpdateProjectCommand : IRequest
     internal void UpdateProject(Project project)
     {
         project.Title = Title;
-        project.Description = Description;
+        project.ShortDescription = Description;
         project.Tags = Tags;
     }
 }

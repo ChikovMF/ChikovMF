@@ -6,49 +6,82 @@
 }
 <h1>@Model.Title</h1>
 
-<div class="row">
-    @if (Model.Images != null && Model.Images.Count > 0)
-    {
-        string activeClassInner = "active";
-        string activeClassIndicators = "class=active aria-current=true";
+@if (Model.Images != null && Model.Images.Count > 0)
+{
+    string activeClassInner = "active";
+    string activeClassIndicators = "class=active aria-current=true";
+    <div class="container">
+        <div class="row">
+            <div id="carouselExampleIndicators" class="carousel carousel-dark slide border" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    @for (int i = 0; i < Model.Images.Count; i++)
+                    {
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" @activeClassIndicators aria-label="Slide @(i + 1)"></button>
+                        activeClassIndicators = String.Empty;
+                    }
+                </div>
+                <div class="carousel-inner">
+                    @foreach (var image in Model.Images)
+                    {
+                        <div class="carousel-item @activeClassInner">
+                            <img src="@image.Link" class="d-block w-100" alt="...">
+                        </div>
 
-        <div id="carouselExampleIndicators" class="carousel carousel-dark slide border" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                @for (int i = 0; i < Model.Images.Count; i++)
-                {
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" @activeClassIndicators aria-label="Slide @(i + 1)"></button>
-                    activeClassIndicators = String.Empty;
-                }
+                        activeClassInner = String.Empty;
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <div class="carousel-inner">
-                @foreach (var image in Model.Images)
-                {
-                    <div class="carousel-item @activeClassInner">
-                        <img src="@image.Link" class="d-block w-100" alt="...">
-                    </div>
-
-                    activeClassInner = String.Empty;
-                }
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-    }
+    </div>
+}
 
-    @if (Model.Tags != null && Model.Tags.Count != 0)
-    {
-        <h4>Тэги проекта:</h4>
-        <ul class="">
-        @foreach (var tag in Model.Tags)
-        {
-            <li>@tag.Title</li>
-        }
-        </ul>
-    }
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>О проекте:</h2>
+            <p>@Model.DetailedDescription</p>
+        </div>
+    </div>
 </div>
+
+@if (Model.ProjectLinks != null && Model.ProjectLinks.Count > 0)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Ссылки на проект:</h2>
+                <ul class="list-group">
+                    @foreach (var link in Model.ProjectLinks)
+                    {
+                        <li class="list-group-item"><a href="@(link.LinkUrl)">@link.LinkName</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.Tags != null && Model.Tags.Count > 0)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Навыки используемые в проекте:</h2>
+                <ul class="list-group list-group-horizontal-sm">
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <li class="list-group-item">@tag.Title</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}

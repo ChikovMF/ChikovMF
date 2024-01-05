@@ -21,7 +21,7 @@ public class CreateProjectCommandHandler
         {
             ProjectId = request.ProjectId,
             Title = request.Title,
-            Description = request.Description,
+            ShortDescription = request.Description,
             Tags = request.Tags,
         };
 

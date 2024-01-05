@@ -22,7 +22,7 @@ public class GetProjectListQueryHandler
     {
         var projects = await _context.Projects.AsNoTracking()
             .Include(p => p.Tags)
-            .Include(p => p.Images.Where(i => i.MainImage))
+            .Include(p => p.ImageLinks.Where(i => i.MainImage))
             .ProjectTo<ProjectLookupDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
 
