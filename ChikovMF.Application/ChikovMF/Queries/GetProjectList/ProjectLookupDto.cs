@@ -17,11 +17,12 @@ namespace ChikovMF.Application.ChikovMF.Queries.GetProjectList
         public string ShortDescription { get; set; } = null!;
 
         public ICollection<Tag>? Tags { get; set; }
-        public ICollection<ImageLink>? ImageLinks { get; set; }
+        public string? ImageLink { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Project, ProjectLookupDto>();
+            profile.CreateMap<Project, ProjectLookupDto>()
+                .ForMember(dest => dest.ImageLink, act => act.MapFrom(src => src.ImageLinks.First().Link));
         }
     }
 }

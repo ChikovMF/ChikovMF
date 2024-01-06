@@ -18,9 +18,9 @@ else
                 {
                     <div class="col">
                         <div class="card shadow-sm">
-                            @if (project.ImageLinks != null && project.ImageLinks.Count != 0)
+                            @if (!string.IsNullOrWhiteSpace(project.ImageLink))
                             {
-                                <img src="@(project.ImageLinks?.First().Link)" alt="Изображение проекта @project.Title." class="card-img-top img-fluid" height="225">
+                                <img src="@(project.ImageLink)" alt="Изображение проекта @project.Title." class="card-img-top img-fluid" height="225">
                             }
                             <div class="card-body">
                                 <h5 class="card-title">@project.Title</h5>
