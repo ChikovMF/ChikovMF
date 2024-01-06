@@ -43,14 +43,17 @@
     </div>
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <h2>О проекте:</h2>
-            <p>@Model.DetailedDescription</p>
+@if (!string.IsNullOrWhiteSpace(Model.DetailedDescription))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>О проекте:</h2>
+                <p>@Model.DetailedDescription</p>
+            </div>
         </div>
     </div>
-</div>
+}
 
 @if (Model.ProjectLinks != null && Model.ProjectLinks.Count > 0)
 {

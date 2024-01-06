@@ -12,13 +12,16 @@ public class ChikovMFDbContext : DbContext, IChikovMFDbContext
     public ChikovMFDbContext(DbContextOptions<ChikovMFDbContext> options)
         : base(options)
     {
-        // Database.EnsureDeleted();
+        Database.EnsureDeleted();
         Database.EnsureCreated();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ProjectConfiguration());
+        modelBuilder.ApplyConfiguration(new TagConfiguration());
+        modelBuilder.ApplyConfiguration(new ImageLinkConfigurations());
+
         base.OnModelCreating(modelBuilder);
     }
 }
