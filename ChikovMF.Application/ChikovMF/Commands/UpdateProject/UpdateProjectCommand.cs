@@ -3,7 +3,7 @@ using MediatR;
 
 namespace ChikovMF.Application.ChikovMF.Commands.UpdateProject;
 
-public class UpdateProjectCommand : IRequest
+public class UpdateProjectCommand : IRequest<int>
 {
     public int ProjectId { get; set; }
     public string Title { get; set; } = null!;

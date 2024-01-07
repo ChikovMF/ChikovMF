@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using ChikovMF.Application.ChikovMF.Commands.CreateProject;
 using ChikovMF.Application.ChikovMF.Commands.DeleteProject;
+using ChikovMF.Application.ChikovMF.Commands.UpdateProject;
 using ChikovMF.Application.ChikovMF.Queries.GetProjectDetails;
 using ChikovMF.Application.ChikovMF.Queries.GetProjectList;
+using ChikovMF.Application.ChikovMF.Queries.GetProjectUpdate;
 using ChikovMF.Application.Common.Exceptions;
 using ChikovMF.MVC.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
@@ -42,13 +44,13 @@ namespace ChikovMF.MVC.Controllers
             return View(vm);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost("[action]")]
+        [HttpPost("Create")]
         public async Task<IActionResult> Create(CreateProjectDto createProjectDto)
         {
             if (ModelState.IsValid)
@@ -63,7 +65,7 @@ namespace ChikovMF.MVC.Controllers
             return View();
         }
 
-        [HttpPost("[action]/{projectId}")]
+        [HttpPost("Delete/{projectId}")]
         public async Task<IActionResult> Delete(int projectId)
         {
             if (ModelState.IsValid)
@@ -79,6 +81,45 @@ namespace ChikovMF.MVC.Controllers
             }
 
             return RedirectToAction("View", new { projectId = projectId });
+        }
+
+        [HttpGet("Update/{projectId}")]
+        public async Task<IActionResult> Update(int projectId)
+        {
+            var query = new GetProjectUpdateQuery
+            {
+                ProjectId = projectId,
+            };
+
+            ProjectUpdateViewModel vm;
+
+            try
+            {
+                vm = await Mediator.Send(query);
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+
+            var dto = _mapper.Map<UpdateProjectDto>(vm);
+
+            return View(dto);
+        }
+
+        [HttpPost("Update")]
+        public async Task<IActionResult> UpdateProject(UpdateProjectDto updateProjectDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var command = _mapper.Map<UpdateProjectCommand>(updateProjectDto);
+
+                var projectId = await Mediator.Send(command);
+
+                return RedirectToAction("View", new { projectId = projectId });
+            }
+
+            return View();
         }
 
         private readonly IMapper _mapper;

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ChikovMF.Application.ChikovMF.Commands.UpdateProject;
 
 public class UpdateProjectCommandHandler
-    : IRequestHandler<UpdateProjectCommand>
+    : IRequestHandler<UpdateProjectCommand, int>
 {
     private readonly IChikovMFDbContext _context;
 
@@ -16,7 +16,7 @@ public class UpdateProjectCommandHandler
         _context = context;
     }
 
-    public async Task Handle(UpdateProjectCommand request,
+    public async Task<int> Handle(UpdateProjectCommand request,
         CancellationToken cancellationToken)
     {
         var project = await _context.Projects
@@ -32,5 +32,7 @@ public class UpdateProjectCommandHandler
         request.UpdateProject(project);
 
         await _context.SaveChangesAsync(cancellationToken);
+
+        return project.ProjectId;
     }
 }

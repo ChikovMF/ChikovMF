@@ -11,7 +11,7 @@ namespace ChikovMF.MVC.Models.Dto
         public string Title { get; set; } = null!;
         [Required]
         public string ShortDescription { get; set; } = null!;
-        public string DetailedDescription { get; set; } = null!;
+        public string? DetailedDescription { get; set; }
 
         public void Mapping(Profile profile)
         {
