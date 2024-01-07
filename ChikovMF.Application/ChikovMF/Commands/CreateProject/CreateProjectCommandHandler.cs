@@ -17,13 +17,7 @@ public class CreateProjectCommandHandler
     public async Task<int> Handle(CreateProjectCommand request, 
         CancellationToken cancellationToken)
     {
-        var project = new Project()
-        {
-            ProjectId = request.ProjectId,
-            Title = request.Title,
-            ShortDescription = request.Description,
-            Tags = request.Tags,
-        };
+        var project = request.CreateProject();
 
         await _context.Projects.AddAsync(project, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
