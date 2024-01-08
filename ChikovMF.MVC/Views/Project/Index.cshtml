@@ -7,11 +7,12 @@
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1>@ViewData["Title"]</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group me-2">
+    @if (User.Identity?.IsAuthenticated is true)
+    {
+        <div class="btn-toolbar mb-2 mb-md-0">
             <a class="btn btn-sm btn-outline-success" asp-controller="Project" asp-action="Create">Создать</a>
         </div>
-    </div>
+    }
 </div>
 
 @if (Model.Projects is null || Model.Projects.Count == 0)

@@ -3,6 +3,7 @@ using ChikovMF.Application.Common.Mappings;
 using ChikovMF.Application.Interfaces;
 using ChikovMF.Persistence;
 using ChikovMF.WebApi.Services.EmailService;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,14 @@ string stringConnection = builder.Configuration.GetConnectionString("DbConnectio
     throw new NullReferenceException("The database connection string was not found.");
 builder.Services.AddPersistence(stringConnection);
 
+// Куки
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => 
+    {
+        options.LoginPath = new PathString("/AccessDenied");
+        options.AccessDeniedPath = new PathString("/AccessDenied");
+    });
+
 // Подключение слоя "Application".
 builder.Services.AddApplication(configuration);
 
@@ -30,7 +39,7 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
@@ -39,7 +48,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthentication();    // аутентификация
+app.UseAuthorization();     // авторизация
 
 app.MapControllerRoute(
     name: "default",

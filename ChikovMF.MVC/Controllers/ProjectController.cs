@@ -7,6 +7,7 @@ using ChikovMF.Application.ChikovMF.Queries.GetProjectList;
 using ChikovMF.Application.ChikovMF.Queries.GetProjectUpdate;
 using ChikovMF.Application.Common.Exceptions;
 using ChikovMF.MVC.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChikovMF.MVC.Controllers
@@ -44,13 +45,13 @@ namespace ChikovMF.MVC.Controllers
             return View(vm);
         }
 
-        [HttpGet("Create")]
+        [HttpGet("Create"), Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost("Create")]
+        [HttpPost("Create"), Authorize]
         public async Task<IActionResult> Create(CreateProjectDto createProjectDto)
         {
             if (ModelState.IsValid)
@@ -65,7 +66,7 @@ namespace ChikovMF.MVC.Controllers
             return View();
         }
 
-        [HttpPost("Delete/{projectId}")]
+        [HttpPost("Delete/{projectId}"), Authorize]
         public async Task<IActionResult> Delete(int projectId)
         {
             if (ModelState.IsValid)
@@ -83,7 +84,7 @@ namespace ChikovMF.MVC.Controllers
             return RedirectToAction("View", new { projectId = projectId });
         }
 
-        [HttpGet("Update/{projectId}")]
+        [HttpGet("Update/{projectId}"), Authorize]
         public async Task<IActionResult> Update(int projectId)
         {
             var query = new GetProjectUpdateQuery
@@ -107,7 +108,7 @@ namespace ChikovMF.MVC.Controllers
             return View(dto);
         }
 
-        [HttpPost("Update")]
+        [HttpPost("Update"), Authorize]
         public async Task<IActionResult> UpdateProject(UpdateProjectDto updateProjectDto)
         {
             if (ModelState.IsValid)

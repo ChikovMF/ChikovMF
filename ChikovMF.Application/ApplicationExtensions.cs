@@ -1,8 +1,8 @@
 ﻿using ChikovMF.WebApi.Services.EmailService;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Configuration;
+using ChikovMF.Application.Services.AdminService;
 
 namespace ChikovMF.Application;
 
@@ -19,6 +19,9 @@ public static class ApplicationExtensions
             throw new ArgumentNullException("Configuration string not found for EmailService.");
         }
         services.AddSingleton(emailConfig);
+
+        services.Configure<AdminConfiguration>(options => configuration.GetSection("AdminConfiguration").Bind(options));
+        services.AddSingleton<IAdminService, AdminService>();
 
         services.AddSingleton<IEmailSender, EmailSender>();
         return services;
