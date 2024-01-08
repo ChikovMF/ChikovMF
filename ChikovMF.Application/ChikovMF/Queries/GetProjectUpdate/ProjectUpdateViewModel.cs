@@ -12,8 +12,11 @@ public class ProjectUpdateViewModel : IMapWith<Project>
     public string ShortDescription { get; set; } = null!;
     public string? DetailedDescription { get; set; }
 
+    public ICollection<ProjectLinkUpdateSubModel>? ProjectLinks { get; set; }
+
     public void Mapping(Profile profile)
     {
+        profile.CreateMap<ProjectLink, ProjectLinkUpdateSubModel>();
         profile.CreateMap<Project, ProjectUpdateViewModel>();
     }
 }

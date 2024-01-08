@@ -26,7 +26,6 @@ namespace ChikovMF.MVC.Controllers
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimsIdentity.DefaultNameClaimType, "Admin"),
-                        //new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
                     };
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));

@@ -1,4 +1,4 @@
-﻿@using ChikovMF.MVC.Models.Dto
+﻿@using ChikovMF.MVC.Models.Dto.Project.Update;
 @model UpdateProjectDto
 @{
     ViewData["Title"] = "Создать проект";
@@ -29,9 +29,62 @@
         <span asp-validation-for="DetailedDescription" class="text-danger"></span>
     </div>
 
+    <div class="form-group mb-2">
+        <table class="table table-striped" id="projectLinks">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Наименование</th>
+                    <th>Ссылка</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.ProjectLinks?.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <input asp-for="@Model.ProjectLinks[i].ProjectLinkId" readonly />
+                            <span asp-validation-for="@Model.ProjectLinks[i].ProjectLinkId" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="@Model.ProjectLinks[i].LinkName" />
+                            <span asp-validation-for="@Model.ProjectLinks[i].LinkName" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="@Model.ProjectLinks[i].LinkUrl" />
+                            <span asp-validation-for="@Model.ProjectLinks[i].LinkUrl" class=" text-danger"></span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-danger" id="removeProjectLink">Удалить</button>
+        <button type="button" class="btn btn-success" id="addProjectLink">Добавить ссылку на проект</button>
+    </div>
+
     <div class="mb-2">
         <input type="submit" class="btn btn-sm btn-outline-success float-end" value="Обновить" />
     </div>
 
     <input type="hidden" asp-for="ProjectId" />
 </form>
+
+@section Scripts {
+    <script>
+        var projectLinks = $('#projectLinks tbody');
+        $("#addProjectLink").click(function () {
+            var rowNo = projectLinks.find('tr').length;
+            var template =
+                '<tr>' +
+                '<td></td>' +
+                '<td><input name="ProjectLinks[' + rowNo + '].LinkName" id="ProjectLinks_' + rowNo + '_LinkName" /></td>' +
+                '<td><input name="ProjectLinks[' + rowNo + '].LinkUrl" id="ProjectLinks_' + rowNo + '_LinkUrl" /></td>' +
+                '</tr>';
+            projectLinks.append(template);
+        });
+
+        $("#removeProjectLink").click(function () {
+            projectLinks.find('tr').last().remove();
+        });
+    </script>
+}

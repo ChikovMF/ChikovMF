@@ -1,5 +1,5 @@
-using ChikovMF.MVC.FormModels.Home;
 using ChikovMF.MVC.Models;
+using ChikovMF.MVC.Models.Form.Home;
 using ChikovMF.WebApi.Services.EmailService;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;

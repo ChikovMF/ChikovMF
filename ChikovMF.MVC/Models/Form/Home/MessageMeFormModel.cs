@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ChikovMF.MVC.FormModels.Home
+namespace ChikovMF.MVC.Models.Form.Home
 {
     public class MessageMeFormModel
     {

@@ -23,7 +23,8 @@ public class GetProjectUpdateQueryHandler : IRequestHandler<GetProjectUpdateQuer
     public async Task<ProjectUpdateViewModel> Handle(GetProjectUpdateQuery request, 
         CancellationToken cancellationToken)
     {
-        var project = await _context.Projects
+        var project = await _context.Projects.AsNoTracking()
+            .Include(p => p.ProjectLinks)
             .FirstOrDefaultAsync(project => project.ProjectId == request.ProjectId,
                 cancellationToken);
 

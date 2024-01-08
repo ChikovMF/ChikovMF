@@ -3,7 +3,7 @@ using ChikovMF.Application.ChikovMF.Commands.CreateProject;
 using ChikovMF.Application.Common.Mappings;
 using System.ComponentModel.DataAnnotations;
 
-namespace ChikovMF.MVC.Models.Dto
+namespace ChikovMF.MVC.Models.Dto.Project.CreateProject
 {
     public class CreateProjectDto : IMapWith<CreateProjectCommand>
     {

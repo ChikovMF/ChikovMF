@@ -6,9 +6,12 @@ using ChikovMF.Application.ChikovMF.Queries.GetProjectDetails;
 using ChikovMF.Application.ChikovMF.Queries.GetProjectList;
 using ChikovMF.Application.ChikovMF.Queries.GetProjectUpdate;
 using ChikovMF.Application.Common.Exceptions;
-using ChikovMF.MVC.Models.Dto;
+using ChikovMF.Domain;
+using ChikovMF.MVC.Models.Dto.Project.CreateProject;
+using ChikovMF.MVC.Models.Dto.Project.Update;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace ChikovMF.MVC.Controllers
 {
@@ -119,8 +122,8 @@ namespace ChikovMF.MVC.Controllers
 
                 return RedirectToAction("View", new { projectId = projectId });
             }
-
-            return View();
+            
+            return View("Update", updateProjectDto);
         }
 
         private readonly IMapper _mapper;

@@ -10,10 +10,14 @@ public class UpdateProjectCommand : IRequest<int>
     public string ShortDescription { get; set; } = null!;
     public string DetailedDescription { get; set; } = null!;
 
+    public ICollection<ProjectLink>? ProjectLinks { get; set; }
+
     public void UpdateProject(Project project)
     {
         project.Title = Title;
         project.ShortDescription = ShortDescription;
         project.DetailedDescription = DetailedDescription;
+
+        project.ProjectLinks = ProjectLinks;
     }
 }

@@ -20,6 +20,7 @@ public class UpdateProjectCommandHandler
         CancellationToken cancellationToken)
     {
         var project = await _context.Projects
+            .Include(p => p.ProjectLinks)
             .FirstOrDefaultAsync(project =>
                 project.ProjectId == request.ProjectId,
                 cancellationToken);
