@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Application", "Chi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Entities", "ChikovMF.Entities\ChikovMF.Entities.csproj", "{FF337005-0CBD-477D-BB6B-6E9F45AFFB02}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A8F1899E-439C-4D8D-8192-FEE29C528E9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{0AA4AF6C-B6B6-42FB-A1FC-02FEB3A59051}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{9FEF6575-4D13-442F-A969-0542C0AAEC9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +42,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{053A39FC-1595-49D3-BC00-1D0B352FB1D7} = {9FEF6575-4D13-442F-A969-0542C0AAEC9E}
+		{EC7CD88B-3396-40A9-B041-8EF4A3535237} = {0AA4AF6C-B6B6-42FB-A1FC-02FEB3A59051}
+		{D3D37AC4-76E9-47F5-86F5-B213F2656F60} = {A8F1899E-439C-4D8D-8192-FEE29C528E9B}
+		{FF337005-0CBD-477D-BB6B-6E9F45AFFB02} = {A8F1899E-439C-4D8D-8192-FEE29C528E9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBF7A9D8-17F3-445A-82BC-26B33DA55F59}

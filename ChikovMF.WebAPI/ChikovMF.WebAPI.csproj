@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChikovMF.Application\ChikovMF.Application.csproj" />
     <ProjectReference Include="..\ChikovMF.Context\ChikovMF.Context.csproj" />
   </ItemGroup>
 
