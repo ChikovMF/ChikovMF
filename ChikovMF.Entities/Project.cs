@@ -6,4 +6,6 @@ public class Project
     public string Name { get; set; } = null!;
     public string Description { get; set; } = null!;
     public string Content { get; set; } = null!;
+
+    public ICollection<ProjectTag>? TagLinks { get; set; }
 }
