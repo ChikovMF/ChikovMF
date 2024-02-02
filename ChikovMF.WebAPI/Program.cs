@@ -1,27 +1,12 @@
-using ChikovMF.Context;
+using ChikovMF.WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddControllers();
-
-builder.Services.AddContext(builder.Configuration);
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.ConfigureServices(builder.Configuration);
 
 var app = builder.Build();
 
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
+app.Configure(app.Environment);
 
 app.MapControllers();
 
