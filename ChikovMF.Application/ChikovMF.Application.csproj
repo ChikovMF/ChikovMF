@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChikovMF.Context\ChikovMF.Context.csproj" />
     <ProjectReference Include="..\ChikovMF.Entities\ChikovMF.Entities.csproj" />
   </ItemGroup>
 
