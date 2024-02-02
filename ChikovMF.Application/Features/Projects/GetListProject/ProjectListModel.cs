@@ -2,7 +2,7 @@
 using ChikovMF.Application.Common.Mappings;
 using ChikovMF.Entities;
 
-namespace ChikovMF.Application.Features.Projects.GetList;
+namespace ChikovMF.Application.Features.Projects.GetListProject;
 
 public class ProjectListModel
 {

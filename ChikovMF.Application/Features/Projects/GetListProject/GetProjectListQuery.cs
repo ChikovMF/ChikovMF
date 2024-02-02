@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ChikovMF.Application.Features.Projects.GetList;
+namespace ChikovMF.Application.Features.Projects.GetListProject;
 
 public class GetProjectListQuery : IRequest<ProjectListModel>
 {

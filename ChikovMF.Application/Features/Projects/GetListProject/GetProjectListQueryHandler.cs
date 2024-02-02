@@ -4,7 +4,7 @@ using ChikovMF.Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChikovMF.Application.Features.Projects.GetList;
+namespace ChikovMF.Application.Features.Projects.GetListProject;
 
 public class GetProjectListQueryHandler : IRequestHandler<GetProjectListQuery, ProjectListModel>
 {
