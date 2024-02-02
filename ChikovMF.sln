@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.WebAPI", "ChikovMF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Context", "ChikovMF.Context\ChikovMF.Context.csproj", "{EC7CD88B-3396-40A9-B041-8EF4A3535237}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Application", "ChikovMF.Application\ChikovMF.Application.csproj", "{D3D37AC4-76E9-47F5-86F5-B213F2656F60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChikovMF.Entities", "ChikovMF.Entities\ChikovMF.Entities.csproj", "{FF337005-0CBD-477D-BB6B-6E9F45AFFB02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{EC7CD88B-3396-40A9-B041-8EF4A3535237}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC7CD88B-3396-40A9-B041-8EF4A3535237}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC7CD88B-3396-40A9-B041-8EF4A3535237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D37AC4-76E9-47F5-86F5-B213F2656F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D37AC4-76E9-47F5-86F5-B213F2656F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D37AC4-76E9-47F5-86F5-B213F2656F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D37AC4-76E9-47F5-86F5-B213F2656F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF337005-0CBD-477D-BB6B-6E9F45AFFB02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF337005-0CBD-477D-BB6B-6E9F45AFFB02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF337005-0CBD-477D-BB6B-6E9F45AFFB02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF337005-0CBD-477D-BB6B-6E9F45AFFB02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
