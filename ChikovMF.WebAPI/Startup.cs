@@ -27,6 +27,9 @@ public static class Startup
 
     public static void Configure(this IApplicationBuilder app, IWebHostEnvironment env)
     {
+        app.UseDefaultFiles();
+        app.UseStaticFiles();
+
         if (env.IsDevelopment())
         {
             app.UseSwagger();
@@ -34,6 +37,11 @@ public static class Startup
         }
 
         app.UseHttpsRedirection();
+
+        if (env.IsDevelopment())
+        {
+            app.UseCors();
+        }
 
         app.UseAuthorization();
     }
