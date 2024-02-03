@@ -9,17 +9,12 @@ public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand,
 {
     public async Task<Guid> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
     {
-        Project project = new();
+        Project project = _mapper.Map<Project>(request.Project);
 
-        project.Name = request.Name;
-        project.Description = request.Description;
-        project.Content = request.Content;
-        project.TagLinks = request.TagLinks.Select(tl => new ProjectTag
+        if (project.TagLinks is not null)
         {
-            Order = tl.Order,
-            TagId = tl.TagId,
-            Project = project
-        }).ToArray();
+            project.TagLinks = project.TagLinks.Select(tl => { tl.Project = project; return tl; }).ToArray();
+        }
 
         _context.Projects.Add(project);
 

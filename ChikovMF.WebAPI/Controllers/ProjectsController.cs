@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using ChikovMF.Application.Features.Projects.CreateProject;
 using ChikovMF.Application.Features.Projects.GetListProject;
-using ChikovMF.WebAPI.Models.ProjectForms;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +19,12 @@ namespace ChikovMF.WebAPI.Controllers
         }
 
         [HttpPost]
-        public  async Task<ActionResult<Guid>> Create(CreateProjectForm createProjectForm)
+        public  async Task<ActionResult<Guid>> Create(CreateProjectModel createProjectModel)
         {
-            var command = _mapper.Map<CreateProjectCommand>(createProjectForm);
+            var command = new CreateProjectCommand
+            {
+                Project = createProjectModel
+            };
             var projectId = await _mediator.Send(command);
             return Ok(projectId);
         }
