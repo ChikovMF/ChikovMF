@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ChikovMF.Application.Features.Projects.CreateProject;
+using ChikovMF.Application.Features.Projects.DeleteProject;
 using ChikovMF.Application.Features.Projects.GetListProject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,16 @@ namespace ChikovMF.WebAPI.Controllers
             };
             var projectId = await _mediator.Send(command);
             return Ok(projectId);
+        }
+
+        [HttpDelete("{projectId:guid}")]
+        public async Task Delete(Guid projectId)
+        {
+            var command = new DeleteProjectCommand
+            {
+                ProjectId = projectId
+            };
+            await _mediator.Send(command);
         }
 
         private readonly IMediator _mediator;
