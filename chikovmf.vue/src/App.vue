@@ -1,13 +1,16 @@
 <template>
+    <ProjectForm></ProjectForm>
     <ProjectList v-if="!loading" :projects="listModel.projects" />
 </template>
 
 <script>
 import ProjectList from "@/components/Projects/ProjectList/ProjectList.vue";
+import ProjectForm from "@/components/Projects/ProjectManager/ProjectForm.vue";
 
 export default {
     components: {
-        ProjectList
+        ProjectList,
+        ProjectForm
     },
     data() {
         return {
@@ -20,8 +23,8 @@ export default {
     },
     methods: {
         fetchData() {
-            this.post = null;
             this.loading = true;
+            this.listModel = null;
 
             fetch('api/Projects')
                 .then(r => r.json())

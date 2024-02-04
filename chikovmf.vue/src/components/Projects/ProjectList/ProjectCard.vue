@@ -10,6 +10,7 @@
                 <div v-for="tag in project.tags">
                     <small>{{ tag }}</small>
                 </div>
+                <MyButton>Подробнее</MyButton>
             </div>
         </div>
     </div>
