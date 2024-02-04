@@ -30,7 +30,7 @@ export default {
     methods: {
         async send() {
             console.log(this.project)
-            const url = "api/projects";
+            const url = "/api/projects";
             const signal = JSON.stringify();
             const requestOptions = {
                 method: 'POST',
