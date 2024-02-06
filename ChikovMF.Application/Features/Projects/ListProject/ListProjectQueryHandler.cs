@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChikovMF.Application.Features.Projects.GetListProject;
 
-public class GetProjectListQueryHandler : IRequestHandler<GetProjectListQuery, ProjectListModel>
+public class ListProjectQueryHandler : IRequestHandler<ListProjectQuery, ListProjectModel>
 {
-    public async Task<ProjectListModel> Handle(GetProjectListQuery request, CancellationToken cancellationToken)
+    public async Task<ListProjectModel> Handle(ListProjectQuery request, CancellationToken cancellationToken)
     {
         var projects = await _context.Projects.AsNoTracking()
             .Include(p => p.TagLinks)!
@@ -16,13 +16,13 @@ public class GetProjectListQueryHandler : IRequestHandler<GetProjectListQuery, P
             .ProjectTo<ProjectItemListModel>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
 
-        return new ProjectListModel() { Projects = projects };
+        return new ListProjectModel() { Projects = projects };
     }
 
     private readonly IChikovMFContext _context;
     private readonly IMapper _mapper;
 
-    public GetProjectListQueryHandler(IChikovMFContext context, IMapper mapper)
+    public ListProjectQueryHandler(IChikovMFContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

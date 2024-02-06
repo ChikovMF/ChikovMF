@@ -4,7 +4,7 @@ using ChikovMF.Entities;
 
 namespace ChikovMF.Application.Features.Projects.GetListProject;
 
-public class ProjectListModel
+public class ListProjectModel
 {
     public ICollection<ProjectItemListModel>? Projects { get; set; }
 }

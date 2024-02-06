@@ -14,7 +14,7 @@ public class CreateProjectModel : IMapWith<Project>
     public void Mapping(Profile profile)
     {
         profile.CreateMap<CreateProjectModel, Project>()
-            .ForMember(dest => dest.TagLinks, act => act.MapFrom(src => src.Tags)); ;
+            .ForMember(dest => dest.TagLinks, act => act.MapFrom(src => src.Tags));
     }
 }
 

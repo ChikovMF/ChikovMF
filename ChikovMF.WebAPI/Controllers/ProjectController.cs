@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChikovMF.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Projects")]
     [ApiController]
-    public class ProjectsController : ControllerBase
+    public class ProjectController : ControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<ProjectListModel>> GetList()
+        public async Task<ActionResult<ListProjectModel>> List()
         {
-            var query = new GetProjectListQuery();
+            var query = new ListProjectQuery();
             var viewModel = await _mediator.Send(query);
             return Ok(viewModel);
         }
@@ -43,7 +43,7 @@ namespace ChikovMF.WebAPI.Controllers
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
 
-        public ProjectsController(IMediator mediator, IMapper mapper)
+        public ProjectController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
             _mapper = mapper;
