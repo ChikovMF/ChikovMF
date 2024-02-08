@@ -11,11 +11,6 @@ public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand,
     {
         Project project = _mapper.Map<Project>(request.Project);
 
-        if (project.TagLinks is not null)
-        {
-            project.TagLinks = project.TagLinks.Select(tl => { tl.Project = project; return tl; }).ToArray();
-        }
-
         _context.Projects.Add(project);
 
         int changes = await _context.SaveChangesAsync(cancellationToken);
