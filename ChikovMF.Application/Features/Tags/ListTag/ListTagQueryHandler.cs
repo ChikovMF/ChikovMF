@@ -12,8 +12,8 @@ public class ListTagQueryHandler : IRequestHandler<ListTagQuery, ListTagModel>
     public async Task<ListTagModel> Handle(ListTagQuery request, CancellationToken cancellationToken)
     {
         var tags = await _context.Tags.AsNoTracking()
-        .ProjectTo<TagItemListModel>(_mapper.ConfigurationProvider)
-        .ToListAsync(cancellationToken);
+            .ProjectTo<TagItemListModel>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
 
         return new ListTagModel() { Tags = tags };
     }
