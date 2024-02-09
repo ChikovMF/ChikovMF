@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ChikovMF.Application.Features.Tags.CreateTag;
 using ChikovMF.Application.Features.Tags.DeleteTag;
+using ChikovMF.Application.Features.Tags.EditTag;
 using ChikovMF.Application.Features.Tags.ListTag;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,29 @@ namespace ChikovMF.WebAPI.Controllers
                 TagId = tagId
             };
             await _mediator.Send(command);
+        }
+
+        [HttpGet("Edit/{tagId:guid}")]
+        public async Task<ActionResult<EditTagModel>> GetEdit(Guid tagId)
+        {
+            var query = new EditTagQuery
+            {
+                TagId = tagId
+            };
+            var viewModel = await _mediator.Send(query);
+            return Ok(viewModel);
+        }
+
+        [HttpPut("{tagId:guid}")]
+        public async Task<ActionResult<Guid>> Edit(Guid tagId, EditTagModel editTagModel)
+        {
+            var command = new EditTagCommand
+            {
+                Tag = editTagModel,
+                TagId = tagId
+            };
+            var idModifiedModel = await _mediator.Send(command);
+            return Ok(idModifiedModel);
         }
 
         private readonly IMediator _mediator;
