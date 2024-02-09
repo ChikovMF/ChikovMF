@@ -1,4 +1,8 @@
 <template>
+    <PageTitle>
+        Главная страница
+    </PageTitle>
+
     <div>
         <h1>Главная страница!</h1>
         <router-link to="/Projects">Проекты</router-link>
@@ -7,7 +11,6 @@
 
 <script>
     export default {
-        
     }
 </script>
 

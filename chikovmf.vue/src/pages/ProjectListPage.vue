@@ -29,6 +29,7 @@ export default {
                 .then(json => {
                     this.listModel = json;
                     this.loading = false;
+                    console.log(json);
                     return;
                 });
         }
