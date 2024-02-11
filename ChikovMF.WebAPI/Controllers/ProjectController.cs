@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using ChikovMF.Application.Features.Projects.CreateProject;
 using ChikovMF.Application.Features.Projects.DeleteProject;
+using ChikovMF.Application.Features.Projects.DetailProject;
+using ChikovMF.Application.Features.Projects.EditProject;
 using ChikovMF.Application.Features.Projects.GetListProject;
+using ChikovMF.Application.Features.Tags.EditTag;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,13 +43,47 @@ namespace ChikovMF.WebAPI.Controllers
             await _mediator.Send(command);
         }
 
-        private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
+        [HttpGet("{projectId:guid}")]
+        public async Task<ActionResult<DetailProjectModel>> Detail(Guid projectId)
+        {
+            var query = new DetailProjectQuery
+            {
+                ProjectId = projectId
+            };
+            var viewModel = await _mediator.Send(query);
 
-        public ProjectController(IMediator mediator, IMapper mapper)
+            return Ok(viewModel);
+        }
+
+        [HttpGet("Edit/{projectId:guid}")]
+        public async Task<ActionResult<EditProjectModel>> GetEdit(Guid projectId)
+        {
+            var query = new EditProjectQuery
+            {
+                ProjectId = projectId
+            };
+            var viewModel = await _mediator.Send(query);
+
+            return Ok(viewModel);
+        }
+
+        [HttpPut("{projectId:guid}")]
+        public async Task<ActionResult<Guid>> Edit(Guid projectId, EditProjectModel editProjectModel)
+        {
+            var command = new EditProjectCommand
+            {
+                Project = editProjectModel,
+                ProjectId = projectId
+            };
+            var idModifiedModel = await _mediator.Send(command);
+            return Ok(idModifiedModel);
+        }
+
+        private readonly IMediator _mediator;
+
+        public ProjectController(IMediator mediator)
         {
             _mediator = mediator;
-            _mapper = mapper;
         }
     }
 }
