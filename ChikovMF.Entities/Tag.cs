@@ -5,5 +5,5 @@ public class Tag
     public Guid TagId { get; set; }
     public string Name { get; set; } = null!;
 
-    public ICollection<ProjectTag>? ProjectLinks { get; set; }
+    public IList<ProjectTag>? ProjectLinks { get; set; }
 }

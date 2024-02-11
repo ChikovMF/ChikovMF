@@ -1,4 +1,6 @@
-﻿using ChikovMF.Application.Interfaces;
+﻿using ChikovMF.Application.Common.Exceptions;
+using ChikovMF.Application.Interfaces;
+using ChikovMF.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +10,12 @@ public class EditTagCommandHandler : IRequestHandler<EditTagCommand, Guid>
 {
     public async Task<Guid> Handle(EditTagCommand request, CancellationToken cancellationToken)
     {
-        var tag = await _context.Tags.FirstOrDefaultAsync(tag => tag.TagId == request.TagId);
+        var tag = await _context.Tags.FirstOrDefaultAsync(tag => tag.TagId == request.TagId, cancellationToken);
+
+        if (tag == null)
+        {
+            throw new NotFoundEntityException(nameof(Tag), request.TagId);
+        }
 
         tag.Name = request.Tag.Name;
 
@@ -20,7 +27,7 @@ public class EditTagCommandHandler : IRequestHandler<EditTagCommand, Guid>
         }
         else
         {
-            return Guid.Empty;
+            throw new SaveChangesInContextException();
         }
     }
 

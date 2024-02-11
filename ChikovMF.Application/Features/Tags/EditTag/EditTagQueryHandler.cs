@@ -12,11 +12,11 @@ public class EditTagQueryHandler : IRequestHandler<EditTagQuery, EditTagModel>
     public async Task<EditTagModel> Handle(EditTagQuery request, CancellationToken cancellationToken)
     {
         var tag = await _context.Tags.AsNoTracking()
-            .FirstOrDefaultAsync(tag => tag.TagId == request.TagId);
+            .FirstOrDefaultAsync(tag => tag.TagId == request.TagId, cancellationToken);
 
         if (tag == null)
         {
-            throw new NotFoundEntityException(nameof(Project), request.TagId);
+            throw new NotFoundEntityException(nameof(Tag), request.TagId);
         }
 
         var tagModel = _mapper.Map<EditTagModel>(tag);
