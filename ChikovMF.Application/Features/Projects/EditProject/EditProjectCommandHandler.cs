@@ -3,7 +3,6 @@ using ChikovMF.Application.Interfaces;
 using ChikovMF.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace ChikovMF.Application.Features.Projects.EditProject;
 

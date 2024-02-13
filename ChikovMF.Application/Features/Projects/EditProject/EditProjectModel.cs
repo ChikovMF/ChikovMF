@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using ChikovMF.Application.Common.Mappings;
-using ChikovMF.Application.Features.Projects.CreateProject;
-using ChikovMF.Application.Features.Projects.GetListProject;
 using ChikovMF.Entities;
 
 namespace ChikovMF.Application.Features.Projects.EditProject;

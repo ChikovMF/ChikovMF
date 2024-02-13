@@ -2,7 +2,7 @@
     <PageTitle>
         Список тэгов
         <template v-slot:buttons>
-            <router-link class="btn btn-sm btn-outline-success" to="/Tags/Create">Создать тэг</router-link>
+            <router-link class="btn btn-sm" to="/Tags/Create">Создать тэг</router-link>
         </template>
     </PageTitle>
 

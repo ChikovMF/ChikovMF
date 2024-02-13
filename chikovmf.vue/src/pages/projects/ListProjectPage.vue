@@ -2,7 +2,7 @@
     <PageTitle>
         Список проектов
         <template v-slot:buttons>
-            <router-link class="btn btn-sm btn-outline-success" to="/Projects/Create">Создать проект</router-link>
+            <router-link class="btn btn-sm" to="/Projects/Create">Создать проект</router-link>
         </template>
     </PageTitle>
 
