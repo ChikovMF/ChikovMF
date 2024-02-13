@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from "vue-router";
 
 import MainPage from '@/pages/MainPage.vue';
 import CreateProjectPage from '@/pages/projects/CreateProjectPage.vue';
+import EditProjectPage from '@/pages/projects/EditProjectPage.vue';
 import ListProjectPage from '@/pages/projects/ListProjectPage.vue';
 import ListTagPage from '@/pages/tags/ListTagPage.vue';
 import CreateTagPage from '@/pages/tags/CreateTagPage.vue';
@@ -19,6 +20,10 @@ const routes = [
     {
         path: '/Projects',
         component: ListProjectPage
+    },
+    {
+        path: '/Projects/Edit/:projectId',
+        component: EditProjectPage
     },
     {
         path: '/Tags',

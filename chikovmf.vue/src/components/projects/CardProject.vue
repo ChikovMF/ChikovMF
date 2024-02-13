@@ -14,7 +14,7 @@
                     <span class="tag badge bg-secondary" v-for="tag in project.tags">{{ tag }}</span    >
                 </div>
 
-                <router-link class="btn btn-sm" to="/Projects">Подробно</router-link>
+                <button class="btn btn-sm" @click="routeEditPage(project.projectId)">Редактировать</button>
             </div>
         </div>
     </div>
@@ -26,6 +26,11 @@ export default {
         project: {
             type: Object,
             required: true,
+        }
+    },
+    methods: {
+        routeEditPage(projectId) {
+            this.$router.push("/Projects/Edit/" + projectId);
         }
     }
 }
