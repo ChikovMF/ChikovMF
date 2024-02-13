@@ -1,56 +1,73 @@
 <template>
-    <div>
-        <label>Название</label>
-        <MyInput v-model="project.name"></MyInput>
-        <br />
+    <form class="row row-cols-lg-auto g-3 align-items-center" id="projectForm" @submit.prevent="sumbitform">
 
-        <label>Описание</label>
-        <MyAreaImput v-model="project.description"></MyAreaImput>
+        <div class="input-group col-12">
+            <label class="input-group-text" for="name">Название</label>
+            <input class="form-control" type="text" id="name" v-model="project.name" name="name" />
+        </div>
 
-        <label>Описание</label>
-        <MyAreaImput v-model="project.content"></MyAreaImput>
+        <div class="input-group col-12">
+            <label class="input-group-text" for="description">Описание</label>
+            <textarea class="form-control" id="description" v-model="project.description" name="description"></textarea>
+        </div>
 
-        <MyButton @click="send">Отправить</MyButton>
-    </div>
+        <div class="input-group col-12">
+            <label class="input-group-text" for="content">Содержание</label>
+            <textarea class="form-control" id="content" v-model="project.content" name="content"></textarea>
+        </div>
+
+        <TagSegment :tags="project.tags" />
+
+        <div v-if="errors.length">
+            <b>Возникли следующие ошибки:</b>
+            <ul>
+                <li v-for="error in errors">{{ error }}</li>
+            </ul>
+        </div>
+
+        <div class="col-12">
+            <input class="btn btn-sm btn-outline-success" type="submit" value="Отправить" />
+        </div>
+
+    </form>
 </template>
 
 <script>
+import TagSegment from './TagSegment.vue';
+
 export default {
     data() {
         return {
-            project: {
-                "name": '',
-                "description": '',
-                "content": '',
-                "tags": []
-            },
-            projectId: null
-        }
+            errors: [],
+        };
+    },
+    props: {
+        project: {
+            type: Object,
+            required: true,
+        },
     },
     methods: {
-        async send() {
-            console.log(this.project)
-            const url = "/api/projects";
-            const signal = JSON.stringify();
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(this.project)
-            };
-            fetch(url, requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    this.projectId = data;
-
-                    this.project = {
-                        "name": '',
-                        "description": '',
-                        "content": '',
-                        "tags": []
-                    }
-                });
-        }
-    }
+        sumbitform() {
+            this.falidateForm();
+            if (this.errors.length === 0)
+                this.$emit('sumbitform', this.project);
+        },
+        falidateForm() {
+            this.errors = [];
+            if (this.project.name === "") {
+                this.errors.push('Требуется указать название.');
+            }
+            if (this.project.description === "") {
+                this.errors.push('Требуется указать описание.');
+            }
+            if (this.project.content === "") {
+                this.errors.push('Требуется указать содержание.');
+            }
+        },
+        
+    },
+    components: { TagSegment }
 }
 </script>
 

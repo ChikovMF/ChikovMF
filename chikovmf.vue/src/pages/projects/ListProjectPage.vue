@@ -1,5 +1,10 @@
 <template>
-    <PageTitle>Список проектов</PageTitle>
+    <PageTitle>
+        Список проектов
+        <template v-slot:buttons>
+            <router-link class="btn btn-sm btn-outline-success" to="/Projects/Create">Создать проект</router-link>
+        </template>
+    </PageTitle>
 
     <ErrorAlert :message="error" v-if="error" />
 
