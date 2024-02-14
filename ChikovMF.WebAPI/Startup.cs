@@ -2,6 +2,7 @@
 using ChikovMF.Application.Common.Mappings;
 using ChikovMF.Application.Interfaces;
 using ChikovMF.Context;
+using Microsoft.Extensions.FileProviders;
 using System.Reflection;
 
 namespace ChikovMF.WebAPI;
@@ -29,6 +30,11 @@ public static class Startup
     {
         app.UseDefaultFiles();
         app.UseStaticFiles();
+        app.UseStaticFiles(new StaticFileOptions()
+        {
+            FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Images")),
+            RequestPath = new PathString("/Images")
+        });
 
         if (env.IsDevelopment())
         {

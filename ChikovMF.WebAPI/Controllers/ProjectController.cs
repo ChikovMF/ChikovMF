@@ -4,6 +4,7 @@ using ChikovMF.Application.Features.Projects.DeleteProject;
 using ChikovMF.Application.Features.Projects.DetailProject;
 using ChikovMF.Application.Features.Projects.EditProject;
 using ChikovMF.Application.Features.Projects.GetListProject;
+using ChikovMF.Application.Features.Projects.UploadProjectCardImage;
 using ChikovMF.Application.Features.Tags.EditTag;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,18 @@ namespace ChikovMF.WebAPI.Controllers
             };
             var projectId = await _mediator.Send(command);
             return Ok(projectId);
+        }
+
+        [HttpPost("UploadCardImage/{projectId:guid}")]
+        public async Task<ActionResult<string>> UploadCardImage(Guid projectId, [FromForm] IFormFile? image)
+        {
+            var command = new UploadProjectCardImageCommand
+            {
+                ProjectId = projectId,
+                ImageStream = image?.OpenReadStream()
+            };
+            var imageSrc = await _mediator.Send(command);
+            return Ok(imageSrc);
         }
 
         [HttpDelete("{projectId:guid}")]

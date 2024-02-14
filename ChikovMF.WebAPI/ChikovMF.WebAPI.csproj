@@ -25,4 +25,8 @@
     <ProjectReference Include="..\ChikovMF.Context\ChikovMF.Context.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>
