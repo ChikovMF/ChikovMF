@@ -3,6 +3,7 @@ using System;
 using ChikovMF.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ChikovMF.Context.Migrations
 {
     [DbContext(typeof(ChikovMFContext))]
-    partial class ChikovMFContextModelSnapshot : ModelSnapshot
+    [Migration("20240214010740_AddProjectImage")]
+    partial class AddProjectImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +52,7 @@ namespace ChikovMF.Context.Migrations
 
             modelBuilder.Entity("ChikovMF.Entities.ProjectImage", b =>
                 {
-                    b.Property<Guid>("ProjectImageId")
+                    b.Property<Guid>("ProjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
@@ -61,7 +64,10 @@ namespace ChikovMF.Context.Migrations
                     b.Property<int>("ImageType")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("ProjectId")
+                    b.Property<Guid>("ProjectId1")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ProjectImageId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Src")
@@ -69,9 +75,9 @@ namespace ChikovMF.Context.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("character varying(128)");
 
-                    b.HasKey("ProjectImageId");
+                    b.HasKey("ProjectId");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("ProjectId1");
 
                     b.ToTable("ProjectImage");
                 });
@@ -114,7 +120,7 @@ namespace ChikovMF.Context.Migrations
                 {
                     b.HasOne("ChikovMF.Entities.Project", "Project")
                         .WithMany("Images")
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("ProjectId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -38,16 +38,9 @@ public class EditProjectCommandHandler : IRequestHandler<EditProjectCommand, Gui
             project.TagLinks = null;
         }
 
-        var changes = await _context.SaveChangesAsync(cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
 
-        if (changes > 0)
-        {
-            return project.ProjectId;
-        }
-        else
-        {
-            throw new SaveChangesInContextException();
-        }
+        return project.ProjectId;
     }
 
     private readonly IChikovMFContext _context;
