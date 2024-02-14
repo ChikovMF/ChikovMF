@@ -1,8 +1,9 @@
 <template>
     <div class="col-auto mt-4">
         <div class="card" style="width: 18rem;">
-            <img src="https://proprikol.ru/wp-content/uploads/2020/08/krasivye-kartinki-kotikov-55.jpg" class="card-img-top"
-                alt="Изображение проекта {{ project.name }}">
+            <img v-if="project.image"
+                :src="project.image.src" class="card-img-top"
+                :alt="project.image.alt">
 
             <div class="card-body">
 

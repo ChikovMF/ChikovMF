@@ -15,7 +15,11 @@
             <label class="input-group-text" for="content">Содержание</label>
             <textarea class="form-control" id="content" v-model="project.content" name="content"></textarea>
         </div>
-
+        
+        <div class="input-group col-12">
+            <input class="form-control" type="file" id="cardImage" @change="onUploadCardImage" name="cardImage" accept="image/png, image/jpeg" />
+        </div>
+        
         <TagSegment :tags="project.tags" />
 
         <div v-if="errors.length">
@@ -39,6 +43,7 @@ export default {
     data() {
         return {
             errors: [],
+            cardImage: null
         };
     },
     props: {
@@ -51,7 +56,7 @@ export default {
         sumbitform() {
             this.falidateForm();
             if (this.errors.length === 0)
-                this.$emit('sumbitform', this.project);
+                this.$emit('sumbitform', this.project, this.cardImage);
         },
         falidateForm() {
             this.errors = [];
@@ -65,7 +70,9 @@ export default {
                 this.errors.push('Требуется указать содержание.');
             }
         },
-        
+        onUploadCardImage(event) {
+            this.cardImage = event.target.files[0];
+        }
     },
     components: { TagSegment }
 }

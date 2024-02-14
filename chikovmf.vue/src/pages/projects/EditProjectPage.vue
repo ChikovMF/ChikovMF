@@ -31,7 +31,7 @@ export default {
         this.load();
     },
     methods: {
-        send: function (project) {
+        send: function (project, cardImage) {
             this.submitSuccessful = false;
             this.error = null;
 
@@ -44,13 +44,44 @@ export default {
             fetch(url, requestOptions)
                 .then(response => {
                     if (response.status === 200) {
+                        if (cardImage) {
+                            response.json().then(json => {
+                                this.uploadCardImage(cardImage, json);
+                            })
+
+                        }
+                        else {
                         this.submitSuccessful = true;
                         this.load();
+                        }
                     }
                     else {
                         this.error = response.status + ": " + response.statusText;
                     }
                 })
+        },
+        uploadCardImage(cardImage, projectId) {
+            const formData = new FormData();
+            formData.append('image', cardImage);
+
+            const url = "/api/Projects/UploadCardImage/" + projectId;
+            const requestOptions = {
+                method: 'POST',
+                body: formData
+            };
+
+            fetch(url, requestOptions)
+                .then(response => {
+                    if (response.status === 200) {
+                        this.submitSuccessful = true;
+                        this.load();
+                    }
+                    else {
+                        this.error = "Проект изменен но во время обновления изображения карты возникла ошибка." + response.status + ": " + response.statusText;
+                        this.load();
+                    }
+                })
+
         },
         load() {
             this.loading = true;

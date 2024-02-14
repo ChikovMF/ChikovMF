@@ -20,7 +20,7 @@ export default {
         return {
             error: null,
             submitSuccessful: false,
-            successAlertMessage: "Тэг успешно создан",
+            successAlertMessage: "Проект успешно добавлен",
             project: {
                 "name": "",
                 "description": "",
@@ -30,9 +30,7 @@ export default {
         }
     },
     methods: {
-        send: function (project) {
-            console.log(project);
-
+        send: function (project, cardImage) {
             this.submitSuccessful = false;
             this.error = null;
 
@@ -42,6 +40,41 @@ export default {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(project)
             };
+            fetch(url, requestOptions)
+                .then(response => {
+                    if (response.status === 200) {
+                        if (cardImage) {
+                            response.json().then(json => {
+                                this.uploadCardImage(cardImage, json);
+                            })
+
+                        }
+                        else {
+                            this.submitSuccessful = true;
+                            this.project = {
+                                "name": "",
+                                "description": "",
+                                "content": "",
+                                "tags": []
+                            }
+                        }
+                    }
+                    else {
+                        console.log(response);
+                        this.error = response.status + ": " + response.statusText;
+                    }
+                })
+        },
+        uploadCardImage(cardImage, projectId) {
+            const formData = new FormData();
+            formData.append('image', cardImage);
+
+            const url = "/api/Projects/UploadCardImage/" + projectId;
+            const requestOptions = {
+                method: 'POST',
+                body: formData
+            };
+
             fetch(url, requestOptions)
                 .then(response => {
                     if (response.status === 200) {
@@ -55,9 +88,10 @@ export default {
                     }
                     else {
                         console.log(response);
-                        this.error = response.status + ": " + response.statusText;
+                        this.error = "Проект добавлен но во время добавления изображения карты возникла ошибка." + response.status + ": " + response.statusText;
                     }
                 })
+
         }
     }
 }
