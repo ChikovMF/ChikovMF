@@ -8,4 +8,5 @@ public class Project
     public string Content { get; set; } = null!;
 
     public IList<ProjectTag>? TagLinks { get; set; }
+    public IList<ProjectImage>? Images { get; set; }
 }
