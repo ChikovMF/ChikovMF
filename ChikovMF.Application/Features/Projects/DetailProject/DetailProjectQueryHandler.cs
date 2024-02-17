@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using ChikovMF.Application.Common.Exceptions;
-using ChikovMF.Application.Features.Projects.EditProject;
 using ChikovMF.Application.Interfaces;
 using ChikovMF.Entities;
 using MediatR;
@@ -14,9 +12,10 @@ public class DetailProjectQueryHandler : IRequestHandler<DetailProjectQuery, Det
     public async Task<DetailProjectModel> Handle(DetailProjectQuery request, CancellationToken cancellationToken)
     {
         var project = await _context.Projects.AsNoTracking()
-           .Include(p => p.TagLinks)!
-               .ThenInclude(tl => tl.Tag)
-           .FirstOrDefaultAsync(p => p.ProjectId == request.ProjectId, cancellationToken);
+            .Include(p => p.Images)
+            .Include(p => p.TagLinks)!
+                .ThenInclude(tl => tl.Tag)
+            .FirstOrDefaultAsync(p => p.ProjectId == request.ProjectId, cancellationToken);
 
         if (project == null)
         {
