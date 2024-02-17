@@ -31,7 +31,7 @@ export default {
         this.load();
     },
     methods: {
-        send: function (project, cardImage) {
+        send: function (project, images) {
             this.submitSuccessful = false;
             this.error = null;
 
@@ -44,15 +44,14 @@ export default {
             fetch(url, requestOptions)
                 .then(response => {
                     if (response.status === 200) {
-                        if (cardImage) {
+                        if (images.card || images.slider.length > 0) {
                             response.json().then(json => {
-                                this.uploadCardImage(cardImage, json);
+                                this.uploadImages(images, json);
                             })
-
                         }
                         else {
-                        this.submitSuccessful = true;
-                        this.load();
+                            this.submitSuccessful = true;
+                            this.load();
                         }
                     }
                     else {
@@ -60,16 +59,20 @@ export default {
                     }
                 })
         },
-        uploadCardImage(cardImage, projectId) {
+        uploadImages(images, projectId) {
+            console.log(images)
             const formData = new FormData();
-            formData.append('image', cardImage);
+            formData.append('card', images.card);
+            for (let i = 0; i < images.slider.length; i++) {
+                formData.append('slider', images.slider.item(i));
+                console.log(images.slider.item(i))
+            }
 
-            const url = "/api/Projects/UploadCardImage/" + projectId;
+            const url = "/api/Projects/UploadImages/" + projectId;
             const requestOptions = {
                 method: 'POST',
                 body: formData
             };
-
             fetch(url, requestOptions)
                 .then(response => {
                     if (response.status === 200) {
@@ -77,11 +80,10 @@ export default {
                         this.load();
                     }
                     else {
-                        this.error = "Проект изменен но во время обновления изображения карты возникла ошибка." + response.status + ": " + response.statusText;
-                        this.load();
+                        console.log(response);
+                        this.error = "Проект изменен, но во время изменения изображений возникла ошибка. (" + response.status + ": " + response.statusText + ")";
                     }
                 })
-
         },
         load() {
             this.loading = true;

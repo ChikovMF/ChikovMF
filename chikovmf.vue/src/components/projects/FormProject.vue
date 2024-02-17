@@ -19,6 +19,10 @@
         <div class="input-group col-12">
             <input class="form-control" type="file" id="cardImage" @change="onUploadCardImage" name="cardImage" accept="image/png, image/jpeg" />
         </div>
+
+        <div class="input-group col-12">
+            <input class="form-control" type="file" id="sliderImages" @change="onUploadSliderImages" name="sliderImages" accept="image/png, image/jpeg" multiple />
+        </div>
         
         <TagSegment :tags="project.tags" />
 
@@ -43,7 +47,10 @@ export default {
     data() {
         return {
             errors: [],
-            cardImage: null
+            images: {
+                card: null,
+                slider: []
+            }
         };
     },
     props: {
@@ -56,7 +63,7 @@ export default {
         sumbitform() {
             this.falidateForm();
             if (this.errors.length === 0)
-                this.$emit('sumbitform', this.project, this.cardImage);
+                this.$emit('sumbitform', this.project, this.images);
         },
         falidateForm() {
             this.errors = [];
@@ -71,7 +78,12 @@ export default {
             }
         },
         onUploadCardImage(event) {
-            this.cardImage = event.target.files[0];
+            console.log(event.target.files[0]);
+            this.images.card = event.target.files[0];
+        },
+        onUploadSliderImages(event) {
+            console.log(event.target.files);
+            this.images.slider = event.target.files;
         }
     },
     components: { TagSegment }
