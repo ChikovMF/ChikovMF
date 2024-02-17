@@ -7,6 +7,7 @@ public class ProjectImage
     public ImageType ImageType { get; set; }
     public string Src { get; set; } = null!;
     public string Alt { get; set; } = null!;
+    public string FileName { get; set; } = null!;
 
     public Project Project { get; set; } = null!;
 }
