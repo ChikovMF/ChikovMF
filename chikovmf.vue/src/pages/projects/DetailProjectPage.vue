@@ -9,18 +9,18 @@
 
     <ErrorAlert :message="error" v-if="error" />
 
-    <div v-if="!loading && project">
-        <p>
-            {{ project.content }}
-        </p>
-    </div>
+    <DetailProject :project="project" v-if="!loading && project" />
 
     <Spinner v-else-if="loading" />
-
 </template>
 
 <script>
+import DetailProject from "@/components/projects/DetailProject.vue";
+
 export default {
+    components: {
+        DetailProject
+    },
     data() {
         return {
             loading: false,
@@ -49,7 +49,7 @@ export default {
                         this.projectTitle = this.project.name;
                     }
                     else {
-                        this.error = response.status + ": " + response.statusText;                        
+                        this.error = response.status + ": " + response.statusText;
                     }
                     this.loading = false;
                 });
