@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ChikovMF.Application.Common.Exceptions;
-using ChikovMF.Application.Interfaces;
+using ChikovMF.Application.Common.Interfaces;
 using ChikovMF.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

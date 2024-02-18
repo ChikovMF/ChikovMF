@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using ChikovMF.Application.Common.Interfaces;
 using ChikovMF.Application.Features.Projects.GetListProject;
-using ChikovMF.Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

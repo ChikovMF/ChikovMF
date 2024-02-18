@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using ChikovMF.Application.Interfaces;
+using ChikovMF.Application.Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

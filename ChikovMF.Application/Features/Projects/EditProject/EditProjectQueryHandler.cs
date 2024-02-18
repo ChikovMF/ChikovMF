@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ChikovMF.Application.Common.Exceptions;
+using ChikovMF.Application.Common.Interfaces;
 using ChikovMF.Application.Features.Projects.DetailProject;
-using ChikovMF.Application.Interfaces;
 using ChikovMF.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +13,7 @@ public class EditProjectQueryHandler : IRequestHandler<EditProjectQuery, EditPro
     public async Task<EditProjectModel> Handle(EditProjectQuery request, CancellationToken cancellationToken)
     {
         var project = await _context.Projects.AsNoTracking()
-           .Include(p => p.TagLinks.OrderBy(tl => tl.Order))
+           .Include(p => p.TagLinks!.OrderBy(tl => tl.Order))
            .FirstOrDefaultAsync(p => p.ProjectId == request.ProjectId, cancellationToken);
 
         if (project == null)
