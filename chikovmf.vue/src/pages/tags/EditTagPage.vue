@@ -7,7 +7,7 @@
     <SuccessAlert :message="successAlertMessage" v-if="submitSuccessful" />
 
     <FormTag v-if="!loading && tag" :tag="tag" v-on:sumbitform="send" />
-    
+
     <Spinner v-else-if="loading" />
 </template>
 
@@ -38,7 +38,10 @@ export default {
             const url = "/api/tags/" + this.$route.params.tagId;
             const requestOptions = {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                },
                 body: JSON.stringify(tag)
             };
             fetch(url, requestOptions)
@@ -59,7 +62,10 @@ export default {
             const url = '/api/Tags/Edit/' + this.$route.params.tagId;
             const requestOptions = {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                }
             };
             fetch(url, requestOptions)
                 .then(async response => {

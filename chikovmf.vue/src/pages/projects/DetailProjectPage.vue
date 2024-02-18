@@ -1,7 +1,7 @@
 <template>
     <PageTitle>
         Проект: {{ projectTitle }}
-        <template v-slot:buttons>
+        <template v-if="$store.state.isAuth" v-slot:buttons>
             <button class="btn btn-sm" @click="routeEditPage">Редактировать</button>
             <button class="btn btn-sm" @click="deleteCommand">Удалить</button>
         </template>
@@ -9,7 +9,7 @@
 
     <ErrorAlert :message="error" v-if="error" />
 
-    <DetailProject :project="project" v-if="!loading && project" />
+    <DetailProject v-if="!loading && project" :project="project" />
 
     <Spinner v-else-if="loading" />
 </template>
@@ -61,7 +61,10 @@ export default {
             const url = "/api/Projects/" + this.$route.params.projectId;
             const requestOptions = {
                 method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                },
             };
             fetch(url, requestOptions)
                 .then(response => {
@@ -69,7 +72,7 @@ export default {
                         this.$router.push("/Projects");
                     }
                     else {
-                        console.log(`Ошибка удаления проекта ({projectId})`);
+                        console.log(`Ошибка удаления проекта (${projectId})`);
                     }
                 })
         }

@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <router-link class="navbar-brand" to="/">ChikovMF</router-link>
+            <router-link class="navbar-brand" to="/">ChikovMF{{ $store.state.isAuth ? ' Admin' : '' }}</router-link>
             <button class="navbar-toggler" type="button" @click="ToggleNavMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -10,7 +10,7 @@
                     <li class="nav-item active">
                         <router-link class="nav-link" to="/Projects">Проекты</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li v-if="$store.state.isAuth" class="nav-item">
                         <router-link class="nav-link" to="/Tags">Тэги</router-link>
                     </li>
                 </ul>

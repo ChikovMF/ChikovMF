@@ -38,7 +38,10 @@ export default {
             const url = "/api/projects/" + this.$route.params.projectId;
             const requestOptions = {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                },
                 body: JSON.stringify(project)
             };
             fetch(url, requestOptions)
@@ -71,6 +74,9 @@ export default {
             const url = "/api/Projects/UploadImages/" + projectId;
             const requestOptions = {
                 method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                },
                 body: formData
             };
             fetch(url, requestOptions)
@@ -92,7 +98,10 @@ export default {
             const url = '/api/Projects/Edit/' + this.$route.params.projectId;
             const requestOptions = {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                },
             };
             fetch(url, requestOptions)
                 .then(async response => {

@@ -64,7 +64,10 @@ export default {
             const url = '/api/Tags';
             const requestOptions = {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                },
             };
             fetch(url, requestOptions)
                 .then(async (response) => {

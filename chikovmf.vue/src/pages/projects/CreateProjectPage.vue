@@ -37,7 +37,10 @@ export default {
             const url = "/api/Projects";
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                },
                 body: JSON.stringify(project)
             };
             fetch(url, requestOptions)
@@ -76,6 +79,9 @@ export default {
             const url = "/api/Projects/UploadImages/" + projectId;
             const requestOptions = {
                 method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                },
                 body: formData
             };
 

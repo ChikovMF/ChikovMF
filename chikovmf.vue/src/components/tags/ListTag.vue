@@ -34,7 +34,10 @@ export default {
             const url = "/api/Tags/" + tagId;
             const requestOptions = {
                 method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                },
             };
             fetch(url, requestOptions)
                 .then(response => {
@@ -45,7 +48,7 @@ export default {
                         }
                     }
                     else {
-                        console.log(`Ошибка удаления тэга ({tagId})`);
+                        console.log(`Ошибка удаления тэга (${tagId})`);
                     }
                 })
         },

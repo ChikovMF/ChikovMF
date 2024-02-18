@@ -36,7 +36,10 @@ export default {
             const url = "/api/Tags";
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                },
                 body: JSON.stringify(tag)
             };
             fetch(url, requestOptions)
