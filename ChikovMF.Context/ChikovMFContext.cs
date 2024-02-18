@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using ChikovMF.Application.Interfaces;
+using ChikovMF.Application.Common.Interfaces;
 using ChikovMF.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +9,7 @@ public class ChikovMFContext : DbContext, IChikovMFContext
 {
     public DbSet<Project> Projects { get; set; }
     public DbSet<Tag> Tags { get; set; }
+    public DbSet<AccessToken> AccessTokens { get; set; }
 
     public ChikovMFContext(DbContextOptions<ChikovMFContext> options)
         : base(options) => Database.EnsureCreated();
