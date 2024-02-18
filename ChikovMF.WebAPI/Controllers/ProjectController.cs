@@ -1,13 +1,11 @@
-﻿using AutoMapper;
-using ChikovMF.Application.Features.Projects.CreateProject;
+﻿using ChikovMF.Application.Features.Projects.CreateProject;
 using ChikovMF.Application.Features.Projects.DeleteProject;
 using ChikovMF.Application.Features.Projects.DetailProject;
 using ChikovMF.Application.Features.Projects.EditProject;
 using ChikovMF.Application.Features.Projects.GetListProject;
-using ChikovMF.Application.Features.Projects.UploadProjectCardImage;
 using ChikovMF.Application.Features.Projects.UploadProjectSliderImage;
-using ChikovMF.Application.Features.Tags.EditTag;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChikovMF.WebAPI.Controllers
@@ -24,7 +22,7 @@ namespace ChikovMF.WebAPI.Controllers
             return Ok(viewModel);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public  async Task<ActionResult<Guid>> Create(CreateProjectModel createProjectModel)
         {
             var command = new CreateProjectCommand
@@ -35,7 +33,7 @@ namespace ChikovMF.WebAPI.Controllers
             return Ok(projectId);
         }
 
-        [HttpPost("UploadImages/{projectId:guid}")]
+        [HttpPost("UploadImages/{projectId:guid}"), Authorize]
         public async Task<ActionResult<int>> UploadImages(Guid projectId)
         {
             var fileCollection = Request.Form.Files;
@@ -48,7 +46,7 @@ namespace ChikovMF.WebAPI.Controllers
             return Ok(imagesSaved);
         }
 
-        [HttpDelete("{projectId:guid}")]
+        [HttpDelete("{projectId:guid}"), Authorize]
         public async Task Delete(Guid projectId)
         {
             var command = new DeleteProjectCommand
@@ -70,7 +68,7 @@ namespace ChikovMF.WebAPI.Controllers
             return Ok(viewModel);
         }
 
-        [HttpGet("Edit/{projectId:guid}")]
+        [HttpGet("Edit/{projectId:guid}"), Authorize]
         public async Task<ActionResult<EditProjectModel>> GetEdit(Guid projectId)
         {
             var query = new EditProjectQuery
@@ -82,7 +80,7 @@ namespace ChikovMF.WebAPI.Controllers
             return Ok(viewModel);
         }
 
-        [HttpPut("{projectId:guid}")]
+        [HttpPut("{projectId:guid}"), Authorize]
         public async Task<ActionResult<Guid>> Edit(Guid projectId, EditProjectModel editProjectModel)
         {
             var command = new EditProjectCommand

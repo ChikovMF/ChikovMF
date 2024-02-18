@@ -4,12 +4,14 @@ using ChikovMF.Application.Features.Tags.DeleteTag;
 using ChikovMF.Application.Features.Tags.EditTag;
 using ChikovMF.Application.Features.Tags.ListTag;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChikovMF.WebAPI.Controllers
 {
     [Route("api/Tags")]
     [ApiController]
+    [Authorize]
     public class TagController : ControllerBase
     {
         [HttpGet]
