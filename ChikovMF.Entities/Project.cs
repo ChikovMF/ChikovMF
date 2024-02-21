@@ -9,4 +9,5 @@ public class Project
 
     public IList<ProjectTag>? TagLinks { get; set; }
     public IList<ProjectImage>? Images { get; set; }
+    public IList<ProjectLink>? Links { get; set; }
 }
