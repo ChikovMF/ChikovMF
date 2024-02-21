@@ -2,7 +2,7 @@
     <header>
         <Navbar />
     </header>
-    <div class="container-lg">
+    <div class="container-lg my-3">
         <router-view></router-view>
     </div>
 </template>
