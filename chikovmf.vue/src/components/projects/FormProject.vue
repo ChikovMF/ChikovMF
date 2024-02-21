@@ -26,6 +26,8 @@
         
         <TagSegment :tags="project.tags" />
 
+        <LinkSegment :links="project.links" />
+
         <div v-if="errors.length">
             <b>Возникли следующие ошибки:</b>
             <ul>
@@ -42,6 +44,7 @@
 
 <script>
 import TagSegment from './TagSegment.vue';
+import LinkSegment from './LinkSegment.vue';
 
 export default {
     data() {
@@ -86,7 +89,7 @@ export default {
             this.images.slider = event.target.files;
         }
     },
-    components: { TagSegment }
+    components: { TagSegment, LinkSegment }
 }
 </script>
 
