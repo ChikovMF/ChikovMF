@@ -1,7 +1,7 @@
 <template>
     <div v-if="images">
 
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleSlidesOnly" class="carousel carousel-dark border slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item" v-for="image in images" :class="{ active: this.isActive(image.projectImageId) }">
                     <img :src="image.src" :alt="image.alt" class="d-block w-100">
