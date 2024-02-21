@@ -13,6 +13,7 @@ public class DetailProjectQueryHandler : IRequestHandler<DetailProjectQuery, Det
     {
         var project = await _context.Projects.AsNoTracking()
             .Include(p => p.Images)
+            .Include(p => p.Links)
             .Include(p => p.TagLinks)!
                 .ThenInclude(tl => tl.Tag)
             .FirstOrDefaultAsync(p => p.ProjectId == request.ProjectId, cancellationToken);

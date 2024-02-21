@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ChikovMF.Application.Common.Mappings;
+using ChikovMF.Application.Features.Projects.Shared;
 using ChikovMF.Entities;
 
 namespace ChikovMF.Application.Features.Projects.EditProject;
@@ -10,6 +11,7 @@ public class EditProjectModel : IMapWith<Tag>
     public string Description { get; set; } = null!;
     public string Content { get; set; } = null!;
 
+    public ICollection<LinkDto>? Links { get; set; }
     public ICollection<EditPtojectTagModel>? Tags { get; set; }
 
     public void Mapping(Profile profile)

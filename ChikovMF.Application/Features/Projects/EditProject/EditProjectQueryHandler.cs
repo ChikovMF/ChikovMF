@@ -13,6 +13,7 @@ public class EditProjectQueryHandler : IRequestHandler<EditProjectQuery, EditPro
     public async Task<EditProjectModel> Handle(EditProjectQuery request, CancellationToken cancellationToken)
     {
         var project = await _context.Projects.AsNoTracking()
+           .Include(p => p.Links)
            .Include(p => p.TagLinks!.OrderBy(tl => tl.Order))
            .FirstOrDefaultAsync(p => p.ProjectId == request.ProjectId, cancellationToken);
 

@@ -11,8 +11,9 @@ public class EditProjectCommandHandler : IRequestHandler<EditProjectCommand, Gui
     public async Task<Guid> Handle(EditProjectCommand request, CancellationToken cancellationToken)
     {
         var project = await _context.Projects
-           .Include(p => p.TagLinks)
-           .FirstOrDefaultAsync(p => p.ProjectId == request.ProjectId, cancellationToken);
+            .Include(p => p.Links)
+            .Include(p => p.TagLinks)
+            .FirstOrDefaultAsync(p => p.ProjectId == request.ProjectId, cancellationToken);
 
         if (project == null)
         {
@@ -24,6 +25,11 @@ public class EditProjectCommandHandler : IRequestHandler<EditProjectCommand, Gui
         project.Name = pm.Name;
         project.Description = pm.Description;
         project.Content = pm.Content;
+        project.Links = pm.Links?.Select(l => new ProjectLink
+        {
+            Name = l.Name,
+            Url = l.Url,
+        }).ToList();
 
         if (pm.Tags != null)
         {
