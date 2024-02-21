@@ -31,7 +31,8 @@ public class GetTokenQueryHandler : IRequestHandler<GetTokenQuery>
         var adminId = new ChatId(_configuration.AdminId);
         var message = await _bot.SendTextMessageAsync(
             chatId: adminId,
-            text: $"Токен доступа: {token}.",
+            text: $"Токен доступа: `{token}`.",
+            parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown,
             cancellationToken: cancellationToken
             );
 
