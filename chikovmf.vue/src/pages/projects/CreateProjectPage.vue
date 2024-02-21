@@ -25,7 +25,8 @@ export default {
                 "name": "",
                 "description": "",
                 "content": "",
-                "tags": []
+                "tags": [],
+                "links": []
             }
         }
     },
