@@ -1,5 +1,5 @@
 <template>
-    <div v-if="images">
+    <div v-if="images && images.length > 0">
 
         <div id="carouselExampleSlidesOnly" class="carousel carousel-dark border slide" data-ride="carousel">
             <div class="carousel-inner">

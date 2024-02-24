@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="container mt-3" v-if="project.links && project.links.lenght > 0">
+    <div class="container mt-3" v-if="project.links && project.links.length > 0">
         <div class="row">
             <div class="col-sm-12">
                 <h2>Ссылки на проект:</h2>
