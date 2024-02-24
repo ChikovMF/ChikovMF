@@ -12,7 +12,7 @@ public class ListProjectQueryHandler : IRequestHandler<ListProjectQuery, ListPro
     {
         var projects = await _context.Projects.AsNoTracking()
             .Include(p => p.Images)
-            .Include(p => p.TagLinks!.OrderBy(t => t.Order))
+            .Include(p => p.TagLinks)!
                 .ThenInclude(tl => tl.Tag)
             .ProjectTo<ProjectItemListModel>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
