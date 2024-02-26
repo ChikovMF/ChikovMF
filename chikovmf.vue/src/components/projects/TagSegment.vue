@@ -88,7 +88,12 @@ export default {
                 });
         },
         deleteTag(tagId) {
-            this.tags.splice(this.tags.indexOf(tag => tag.tagId == tagId), 1);
+            console.log(tagId)
+            console.log(this.tags[0].tagId == tagId)
+            let indexTag = this.tags.findIndex(tag => tag.tagId == tagId);
+            console.log(indexTag)
+            if(indexTag >= 0)
+                this.tags.splice(indexTag, 1);
         }
     },
     created() {
