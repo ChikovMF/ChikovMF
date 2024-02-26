@@ -6,7 +6,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-sm-3 d-sm-block d-none">
-                <img src="@/img/me.jpg" class="img-fluid border" alt="Мое фото">
+                <img src="@/img/me.jpg" class="img-fluid img-thumbnail" alt="Мое фото">
             </div>
             <div class="col-sm-9">
                 <h1>Здравствуйте, я Матвей</h1>
@@ -27,6 +27,8 @@
                     <li class="list-group-item">Entity Framework</li>
                     <li class="list-group-item">xUnit</li>
                     <li class="list-group-item">JavaScript</li>
+                    <li class="list-group-item">Vue.js</li>
+                    <li class="list-group-item">Git</li>
                 </ul>
             </div>
         </div>
