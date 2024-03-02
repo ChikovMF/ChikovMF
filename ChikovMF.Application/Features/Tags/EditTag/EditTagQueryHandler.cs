@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
 using ChikovMF.Application.Common.Exceptions;
 using ChikovMF.Application.Common.Interfaces;
+using ChikovMF.Application.Features.Tags.Shared;
 using ChikovMF.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChikovMF.Application.Features.Tags.EditTag;
 
-public class EditTagQueryHandler : IRequestHandler<EditTagQuery, EditTagModel>
+public class EditTagQueryHandler : IRequestHandler<EditTagQuery, TagDto>
 {
-    public async Task<EditTagModel> Handle(EditTagQuery request, CancellationToken cancellationToken)
+    public async Task<TagDto> Handle(EditTagQuery request, CancellationToken cancellationToken)
     {
         var tag = await _context.Tags.AsNoTracking()
             .FirstOrDefaultAsync(tag => tag.TagId == request.TagId, cancellationToken);
@@ -19,7 +20,7 @@ public class EditTagQueryHandler : IRequestHandler<EditTagQuery, EditTagModel>
             throw new NotFoundEntityException(nameof(Tag), request.TagId);
         }
 
-        var tagModel = _mapper.Map<EditTagModel>(tag);
+        var tagModel = _mapper.Map<TagDto>(tag);
 
         return tagModel;
     }

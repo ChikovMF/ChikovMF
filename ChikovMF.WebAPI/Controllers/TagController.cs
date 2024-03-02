@@ -3,6 +3,7 @@ using ChikovMF.Application.Features.Tags.CreateTag;
 using ChikovMF.Application.Features.Tags.DeleteTag;
 using ChikovMF.Application.Features.Tags.EditTag;
 using ChikovMF.Application.Features.Tags.ListTag;
+using ChikovMF.Application.Features.Tags.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ namespace ChikovMF.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create(CreateTagModel createTagModel)
+        public async Task<ActionResult<Guid>> Create(TagDto createTagModel)
         {
             var command = new CreateTagCommand
             {
@@ -44,7 +45,7 @@ namespace ChikovMF.WebAPI.Controllers
         }
 
         [HttpGet("Edit/{tagId:guid}")]
-        public async Task<ActionResult<EditTagModel>> GetEdit(Guid tagId)
+        public async Task<ActionResult<TagDto>> GetEdit(Guid tagId)
         {
             var query = new EditTagQuery
             {
@@ -55,7 +56,7 @@ namespace ChikovMF.WebAPI.Controllers
         }
 
         [HttpPut("{tagId:guid}")]
-        public async Task<ActionResult<Guid>> Edit(Guid tagId, EditTagModel editTagModel)
+        public async Task<ActionResult<Guid>> Edit(Guid tagId, TagDto editTagModel)
         {
             var command = new EditTagCommand
             {
