@@ -2,15 +2,16 @@
 using ChikovMF.Application.Common.Exceptions;
 using ChikovMF.Application.Common.Interfaces;
 using ChikovMF.Application.Features.Projects.DetailProject;
+using ChikovMF.Application.Features.Projects.Shared;
 using ChikovMF.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChikovMF.Application.Features.Projects.EditProject;
 
-public class EditProjectQueryHandler : IRequestHandler<EditProjectQuery, EditProjectModel>
+public class EditProjectQueryHandler : IRequestHandler<EditProjectQuery, ProjectDto>
 {
-    public async Task<EditProjectModel> Handle(EditProjectQuery request, CancellationToken cancellationToken)
+    public async Task<ProjectDto> Handle(EditProjectQuery request, CancellationToken cancellationToken)
     {
         var project = await _context.Projects.AsNoTracking()
            .Include(p => p.Links)
@@ -22,7 +23,7 @@ public class EditProjectQueryHandler : IRequestHandler<EditProjectQuery, EditPro
             throw new NotFoundEntityException(nameof(Project), request.ProjectId);
         }
 
-        var projectModel = _mapper.Map<EditProjectModel>(project);
+        var projectModel = _mapper.Map<ProjectDto>(project);
 
         return projectModel;
     }

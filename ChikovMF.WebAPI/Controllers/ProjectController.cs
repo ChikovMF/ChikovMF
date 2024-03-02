@@ -3,6 +3,7 @@ using ChikovMF.Application.Features.Projects.DeleteProject;
 using ChikovMF.Application.Features.Projects.DetailProject;
 using ChikovMF.Application.Features.Projects.EditProject;
 using ChikovMF.Application.Features.Projects.GetListProject;
+using ChikovMF.Application.Features.Projects.Shared;
 using ChikovMF.Application.Features.Projects.UploadProjectSliderImage;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -23,7 +24,7 @@ namespace ChikovMF.WebAPI.Controllers
         }
 
         [HttpPost, Authorize]
-        public  async Task<ActionResult<Guid>> Create(CreateProjectModel createProjectModel)
+        public  async Task<ActionResult<Guid>> Create(ProjectDto createProjectModel)
         {
             var command = new CreateProjectCommand
             {
@@ -69,7 +70,7 @@ namespace ChikovMF.WebAPI.Controllers
         }
 
         [HttpGet("Edit/{projectId:guid}"), Authorize]
-        public async Task<ActionResult<EditProjectModel>> GetEdit(Guid projectId)
+        public async Task<ActionResult<ProjectDto>> GetEdit(Guid projectId)
         {
             var query = new EditProjectQuery
             {
@@ -81,7 +82,7 @@ namespace ChikovMF.WebAPI.Controllers
         }
 
         [HttpPut("{projectId:guid}"), Authorize]
-        public async Task<ActionResult<Guid>> Edit(Guid projectId, EditProjectModel editProjectModel)
+        public async Task<ActionResult<Guid>> Edit(Guid projectId, ProjectDto editProjectModel)
         {
             var command = new EditProjectCommand
             {
