@@ -1,5 +1,6 @@
 ﻿using ChikovMF.Application.Common.Mappings;
 using ChikovMF.Application.Features.Authorization;
+using ChikovMF.Application.Features.Files.Shared;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -21,6 +22,8 @@ public static class ApplicationExtensions
         services.AddSingleton(authConfiguration);
         string accessToken = configuration["AuthConfiguration:AccessToken"] ?? throw new ArgumentNullException("Access token string not found for AuthService.");
         services.AddScoped(s => new TelegramBotClient(accessToken));
+
+        services.AddScoped<IFileManager, StaticFileManager>();
 
         return services;
     }

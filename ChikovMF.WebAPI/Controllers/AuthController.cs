@@ -1,9 +1,6 @@
 ﻿using ChikovMF.Application.Features.Authorization.GetToken;
 using ChikovMF.Application.Features.Authorization.SendCode;
-using ChikovMF.Application.Features.Projects.GetListProject;
-using ChikovMF.Application.Features.Projects.UploadProjectSliderImage;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
