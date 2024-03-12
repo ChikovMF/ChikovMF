@@ -74,10 +74,27 @@ public static class Startup
     {
         app.UseDefaultFiles();
         app.UseStaticFiles();
+
+        string pathImageDirectory = Path.Combine(Directory.GetCurrentDirectory(), $"Images");
+        if (!Directory.Exists(pathImageDirectory))
+        {
+            Directory.CreateDirectory(pathImageDirectory);
+        }
         app.UseStaticFiles(new StaticFileOptions()
         {
             FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Images")),
             RequestPath = new PathString("/Images")
+        });
+
+        string pathFileDirectory = Path.Combine(Directory.GetCurrentDirectory(), $"Files");
+        if (!Directory.Exists(pathFileDirectory))
+        {
+            Directory.CreateDirectory(pathFileDirectory);
+        }
+        app.UseStaticFiles(new StaticFileOptions()
+        {
+            FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Files")),
+            RequestPath = new PathString("/Files")
         });
 
         if (env.IsDevelopment())
