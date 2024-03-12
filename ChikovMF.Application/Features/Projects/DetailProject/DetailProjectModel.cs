@@ -11,8 +11,8 @@ public class DetailProjectModel : IMapWith<Project>
     public string Content { get; set; } = null!;
 
     public ICollection<string>? Tags { get; set; }
-    public ICollection<LinkDto>? Links { get; set; }
-    public ICollection<ImageDto>? Images { get; set; }
+    public ICollection<ProjectLinkDto>? Links { get; set; }
+    public ICollection<ProjectLinkDto>? Images { get; set; }
 
     public void Mapping(Profile profile)
     {
