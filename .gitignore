@@ -362,3 +362,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 *.jpg
+
+# My ignor
+ChikovMF.WebAPI/Files/*
+ChikovMF.WebAPI/Images/*

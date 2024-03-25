@@ -1,4 +1,5 @@
-﻿using ChikovMF.Application.Common.Mappings;
+﻿using ChikovMF.Application.Common.Interfaces;
+using ChikovMF.Application.Common.Mappings;
 using ChikovMF.Application.Features.Authorization;
 using ChikovMF.Application.Features.Files.Shared;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +11,7 @@ namespace ChikovMF.Application;
 
 public static class ApplicationExtensions
 {
-    public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration, IFileManager fileManager)
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
@@ -22,8 +23,6 @@ public static class ApplicationExtensions
         services.AddSingleton(authConfiguration);
         string accessToken = configuration["AuthConfiguration:AccessToken"] ?? throw new ArgumentNullException("Access token string not found for AuthService.");
         services.AddScoped(s => new TelegramBotClient(accessToken));
-
-        services.AddScoped<IFileManager, StaticFileManager>();
 
         return services;
     }

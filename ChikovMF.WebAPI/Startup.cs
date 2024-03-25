@@ -2,6 +2,7 @@
 using ChikovMF.Application.Common.Interfaces;
 using ChikovMF.Application.Common.Mappings;
 using ChikovMF.Context;
+using ChikovMF.WebAPI.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
@@ -38,8 +39,10 @@ public static class Startup
             config.AddProfile(new AssemblyMappingProfile(typeof(IChikovMFContext).Assembly));
         });
 
+        services.AddScoped<IFileManager, StaticFileManager>();
+
         services.AddContext(configuration);
-        services.AddApplication(configuration);
+        services.AddApplication(configuration, new StaticFileManager());
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(option =>
@@ -54,19 +57,19 @@ public static class Startup
                 Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1safsfsdfdfd\"",
             });
             option.AddSecurityRequirement(new OpenApiSecurityRequirement
- {
-     {
-           new OpenApiSecurityScheme
-             {
-                 Reference = new OpenApiReference
-                 {
-                     Type = ReferenceType.SecurityScheme,
-                     Id = "Bearer"
-                 }
-             },
-             new string[] {}
-     }
- });
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] {}
+                }
+            });
         });
     }
 

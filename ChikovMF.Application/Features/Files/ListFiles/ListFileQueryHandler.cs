@@ -1,3 +1,4 @@
+using ChikovMF.Application.Common.Interfaces;
 using ChikovMF.Application.Features.Files.Shared;
 using MediatR;
 
@@ -7,7 +8,8 @@ namespace ChikovMF.Application.Features.Files.ListFiles
     {
         public async Task<ICollection<FileDto>> Handle(ListFileQuery request, CancellationToken cancellationToken)
         {
-            var files = await _fileManager.GetListFiles();
+            var files = await _fileManager.GetFiles(request.PathLocation, cancellationToken);
+            
             return files;
         }
 
