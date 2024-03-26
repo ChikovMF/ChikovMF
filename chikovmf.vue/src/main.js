@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import VueCookies from 'vue3-cookies'
 import App from './App.vue'
 import components from '@/components/UI';
 import router from '@/router/router';
@@ -13,13 +14,21 @@ components.forEach(component => {
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requireAuth) && !store.state.isAuth) {
+    if (to.matched.some(record => record.meta.requireAuth) && !store.getters.isAuth) {
         next({
             path: '/AccessDenied',
         });
     } else {
         next();
     }
+});
+
+app.use(VueCookies, {
+    expireTimes: "30d",
+    path: "/",
+    domain: "",
+    secure: true,
+    sameSite: "None"
 });
 
 app.use(router)

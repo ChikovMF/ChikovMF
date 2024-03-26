@@ -38,7 +38,7 @@ export default {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json', 
-                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                    'Authorization': 'Bearer ' + this.$store.state.token,
                 },
                 body: JSON.stringify(tag)
             };

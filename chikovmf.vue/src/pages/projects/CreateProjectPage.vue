@@ -40,7 +40,7 @@ export default {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json', 
-                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                    'Authorization': 'Bearer ' + this.$store.state.token,
                 },
                 body: JSON.stringify(project)
             };
@@ -81,7 +81,7 @@ export default {
             const requestOptions = {
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                    'Authorization': 'Bearer ' + this.$store.state.token,
                 },
                 body: formData
             };

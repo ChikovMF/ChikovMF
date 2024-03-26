@@ -40,15 +40,16 @@ export default {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json', 
-                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                    'Authorization': 'Bearer ' + this.$store.state.token,
                 },
                 body: JSON.stringify(tag)
             };
             fetch(url, requestOptions)
-                .then(response => {
+                .then(async response => {
                     if (response.status === 200) {
-                        this.submitSuccessful = true;
-                        this.load();
+                        // this.submitSuccessful = true;
+                        // this.load();
+                        this.$router.push("/Tags");
                     }
                     else {
                         this.error = response.status + ": " + response.statusText;
@@ -64,7 +65,7 @@ export default {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                    'Authorization': 'Bearer ' + this.$store.state.token,
                 }
             };
             fetch(url, requestOptions)

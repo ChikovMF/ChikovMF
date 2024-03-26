@@ -1,7 +1,7 @@
 <template>
     <PageTitle>
         Проект: {{ projectTitle }}
-        <template v-if="$store.state.isAuth" v-slot:buttons>
+        <template v-if="$store.getters.isAuth" v-slot:buttons>
             <button class="btn btn-sm" @click="routeEditPage">Редактировать</button>
             <button class="btn btn-sm" @click="deleteCommand">Удалить</button>
         </template>
@@ -63,7 +63,7 @@ export default {
                 method: 'DELETE',
                 headers: { 
                     'Content-Type': 'application/json', 
-                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                    'Authorization': 'Bearer ' + this.$store.state.token,
                 },
             };
             fetch(url, requestOptions)

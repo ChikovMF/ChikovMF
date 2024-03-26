@@ -12,15 +12,20 @@
 </template>
 
 <script>
-    export default {
-        methods: {
-            routeMain() {
-                this.$router.push("/");
-            }
+export default {
+    methods: {
+        routeMain() {
+            this.$router.push("/");
         }
+    },
+    created() {
+        if (this.$store.token == this.$cookies.get("token"))
+        {
+            this.$cookies.remove('token');
+        }
+        this.$store.commit('relogin');
     }
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -10,10 +10,10 @@
         <tbody>
             <tr v-for="link in links">
                 <td>
-                    <input type="text" v-model="link.name">
+                    <input class="form-control" type="text" v-model="link.name">
                 </td>
                 <td>
-                    <input type="text" v-model="link.url">
+                    <input class="form-control" type="text" v-model="link.url">
                 </td>
                 <td>
                     <button class="btn btn-sm btn-link" type="button" @click="deleteLink(link)">

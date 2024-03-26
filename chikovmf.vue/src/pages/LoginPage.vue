@@ -41,7 +41,8 @@ export default {
                 .then(async response => {
                     if (response.status === 200) {
                         let token = await response.text();
-                        this.$store.commit('setbBearToken', token);
+                        this.$cookies.set('token', token);
+                        this.$store.commit('login', token);
                         this.token = "";
                     }
                     else {

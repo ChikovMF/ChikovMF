@@ -34,16 +34,14 @@ export default {
         fetchData() {
             this.loading = true;
             this.listModel = null;
-            console.log(this.$store.state.bearToken);
             const url = "/api/Tags";
             const requestOptions = {
                 method: 'GET',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + this.$store.state.bearToken,
+                    'Authorization': 'Bearer ' + this.$store.state.token,
                 }
             };
-            console.log(requestOptions)
             fetch(url, requestOptions)
                 .then(async response => {
                     if (response.status === 200) {

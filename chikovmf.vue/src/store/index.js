@@ -1,19 +1,21 @@
-import {createStore} from "vuex";
+import { createStore } from "vuex";
 
 export default createStore({
     state: {
-        bearToken: null,
-        isAuth: false
+        token: null,
     },
     getters: {
-    },
-    mutations: {
-        setbBearToken(state, token) {
-            state.bearToken = token;
-            state.isAuth = true
+        isAuth(state) {
+            return state.token ? true : false;
         }
     },
-    actions: {
-
-    }
+    mutations: {
+        login(state, token) {
+            state.token = token;
+        },
+        relogin(state) {
+            state.token = null;
+        }
+    },
+    actions: { }
 })

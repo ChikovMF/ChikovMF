@@ -1,7 +1,7 @@
 <template>
     <PageTitle>
         Список проектов
-        <template v-if="$store.state.isAuth" v-slot:buttons>
+        <template v-if="$store.getters.isAuth" v-slot:buttons>
             <router-link class="btn btn-sm" to="/Projects/Create">Создать проект</router-link>
         </template>
     </PageTitle>
